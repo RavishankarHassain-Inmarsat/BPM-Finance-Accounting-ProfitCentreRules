@@ -1,0 +1,127 @@
+---
+apiVersion: "v1"
+kind: "Template"
+labels: {}
+metadata:
+  annotations:
+    description: "A trivial Spring XML Camel service that accepts emulated customer\
+      \ greetings (via a 'simulator route'), appends a secret message, and sends to\
+      \ an emulated customer service (implemented as a bean that creates a log message)."
+    iconClass: "icon-java"
+  labels: {}
+  name: "spring-xml-camel-prod"
+objects:
+- apiVersion: "v1"
+  kind: "DeploymentConfig"
+  metadata:
+    annotations: {}
+    labels:
+      app: "spring-xml-camel"
+      artifact: "spring-xml-camel"
+      container: "java"
+      component: "spring-xml-camel"
+      deploymentconfig: "spring-xml-camel"
+      provider: "s2i"
+      project: "spring-xml-camel"
+      group: "com.inmarsat.esb.templates"
+    name: "spring-xml-camel"
+  spec:
+    replicas: 1
+    selector:
+      app: "spring-xml-camel"
+      artifact: "spring-xml-camel"
+      container: "java"
+      component: "spring-xml-camel"
+      deploymentconfig: "spring-xml-camel"
+      provider: "s2i"
+      project: "spring-xml-camel"
+      group: "com.inmarsat.esb.templates"
+    strategy:
+      annotations: {}
+      labels: {}
+      resources:
+        limits: {}
+        requests: {}
+      rollingParams:
+        maxSurge: "30%"
+        maxUnavailable: "20%"
+        timeoutSeconds: 240
+      type: "Rolling"
+    template:
+      metadata:
+        annotations: {}
+        labels:
+          app: "spring-xml-camel"
+          artifact: "spring-xml-camel"
+          container: "java"
+          component: "spring-xml-camel"
+          deploymentconfig: "spring-xml-camel"
+          provider: "s2i"
+          project: "spring-xml-camel"
+          group: "com.inmarsat.esb.templates"
+      spec:
+        containers:
+        - args: []
+          command: []
+          env:
+          - name: "TZ"
+            value: "Etc/UTC"
+          - name: "JAVA_OPTIONS"
+            value: "-Xmx30m"
+          image: "${SOURCE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}"
+          name: "spring-xml-camel"
+          ports:
+          - containerPort: 8778
+            name: "jolokia"
+            protocol: "TCP"
+          readinessProbe:
+            exec:
+              command:
+              - "/bin/bash"
+              - "-c"
+              - "(curl -f 127.0.0.1:8778) >/dev/null 2>&1; test $? != 7"
+            initialDelaySeconds: 30
+            timeoutSeconds: 5
+          resources:
+            limits:
+              memory: "256Mi"
+            requests: {}
+          volumeMounts:
+          - mountPath: "/etc/configmap"
+            name: "spring-xml-camel-configmap"
+            readOnly: true
+          - mountPath: "/etc/secret"
+            name: "spring-xml-camel-secret"
+            readOnly: true
+        imagePullSecrets: []
+        nodeSelector: {}
+        volumes:
+        - configMap:
+            items: []
+            name: "spring-xml-camel"
+          name: "spring-xml-camel-configmap"
+        - name: "spring-xml-camel-secret"
+          secret:
+            secretName: "spring-xml-camel"
+    triggers:
+    - type: "ConfigChange"
+    - imageChangeParams:
+        automatic: false
+        containerNames:
+        - "spring-xml-camel"
+        from:
+          kind: "ImageStreamTag"
+          name: "${IMAGE_NAME}:${IMAGE_TAG}"
+          namespace: "${SOURCE_NAMESPACE}"
+      type: "ImageChange"
+  status: {}
+parameters:
+- description: "The Host of the route."
+  name: "ROUTE_HOST"
+  value: "spring-xml-camel-v1-sandbox.89d9.dev-inmarsat.openshiftapps.com "
+- name: "IMAGE_NAME"
+  value: "spring-xml-camel"
+- name: "IMAGE_TAG"
+  value: "stage"
+- name: "SOURCE_NAMESPACE"
+  value: "staging"

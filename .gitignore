@@ -1,0 +1,8 @@
+target/
+kube-generator/.settings/
+.settings/
+.classpath
+.project
+.sonarlint/
+**/.idea/
+**/*.iml
