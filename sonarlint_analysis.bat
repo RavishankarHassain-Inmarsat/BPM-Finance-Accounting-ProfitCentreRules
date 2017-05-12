@@ -1,0 +1,1 @@
+start sonarlint -u --src **/**
