@@ -1,0 +1,216 @@
+ package com.inmarsat.profitcentre;
+
+import com.inmarsat.profitcentre.ESASRequest;
+import com.inmarsat.profitcentre.ESASUtil;
+import org.jbpm.workflow.instance.WorkflowProcessInstance;
+global java.util.Map compIdBUMap;
+global java.util.Map esasProdIndBu;
+global java.util.Map esasProdBuCdBu;
+global java.util.Map esasCntryOfRegBu;
+global java.util.Map proftCtMap;
+
+
+rule "ESAS Rule 1 with DP Id - Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null,
+			   profitCentre == null, dpId != null, companyId != null)
+		$util : ESASUtil(
+		        compIdBUMap != null, compIdBu : compIdBUMap,
+		        proftCtMap != null, proftCt : proftCtMap)
+		processInstance : WorkflowProcessInstance()
+	then
+	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	p.setVariable("esasRequest",$erq);
+    	retract(p);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "company id: " + $erq.getCompanyId() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+
+rule "ESAS Rule 2 with DP Id - Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, catCode != null, businessUnit != null , countryOfRegistration != null,
+			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration)
+		$util : ESASUtil(
+		        proftCtMap != null, proftCt : proftCtMap,
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu
+		        )
+		processInstance : WorkflowProcessInstance()
+	then
+	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	p.setVariable("esasRequest",$erq);
+    	retract(p);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "countryOfRegistration: " + $erq.getCountryOfRegistration() );
+		System.out.println( "catCode: " + $erq.getCatCode() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+
+rule "ESAS Rule 3 with DP Id - Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, productCode != null, catCode != null)
+		$util : ESASUtil(
+		        proftCtMap != null, proftCt : proftCtMap,
+		        esasProdIndBu != null, esasProdIndBuMap : esasProdIndBu
+		        )
+		processInstance : WorkflowProcessInstance()
+		
+	then
+	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		$erq.setBusinessUnitPC((String)esasProdIndBuMap.get($erq.getProductCode()+","+$erq.getCatCode()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	p.setVariable("esasRequest",$erq);
+    	retract(p);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "ProductCode: " + $erq.getProductCode() );
+		System.out.println( "catCode: " + $erq.getCatCode() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+
+rule "ESAS Rule 4 with DP Id - Classic Areo"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+		dpId != null, productCode != null, businessUnit != null)
+		$util : ESASUtil(
+		        proftCtMap != null, proftCt : proftCtMap,
+		        esasProdIndBu != null, esasProdBuCdBuMap : esasProdBuCdBu
+		        )
+		processInstance : WorkflowProcessInstance()
+	then
+	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		$erq.setBusinessUnitPC((String)esasProdBuCdBuMap.get($erq.getProductCode()+","+$erq.getBusinessUnit()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	p.setVariable("esasRequest",$erq);
+    	retract(p);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+
+/*rule "ESAS Rule 1 without DP Id - Non Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null,
+			   profitCentre == null, dpId == null, companyId != null)
+		$util : ESASUtil(
+		        compIdBUMap != null, compIdBu : compIdBUMap
+		        )
+		processInstance : WorkflowProcessInstance()
+	then
+		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	processInstance.setVariable("esasRequest",$erq);
+    	retract(processInstance);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "company id: " + $erq.getCompanyId() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+
+rule "ESAS Rule 2 without DP Id - Non Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, catCode != null, businessUnit != null , countryOfRegistration != null,
+			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration)
+		$util : ESASUtil(
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu
+		        )
+		processInstance : WorkflowProcessInstance()
+	then
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	processInstance.setVariable("esasRequest",$erq);
+    	retract(processInstance);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "countryOfRegistration: " + $erq.getCountryOfRegistration() );
+		System.out.println( "catCode: " + $erq.getCatCode() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+rule "ESAS Rule 3 without DP Id - Non Classic Areo"
+ruleflow-group "derive_profitcentre"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, productCode != null, catCode != null)
+		$util : ESASUtil(
+		        esasProdIndBu != null, esasProdIndBuMap : esasProdIndBu
+		        )
+		processInstance : WorkflowProcessInstance()
+		
+	then
+		$erq.setBusinessUnitPC((String)esasProdIndBuMap.get($erq.getProductCode()+","+$erq.getCatCode()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	processInstance.setVariable("esasRequest",$erq);
+    	retract(processInstance);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "ProductCode: " + $erq.getProductCode() );
+		System.out.println( "catCode: " + $erq.getCatCode() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end
+rule "ESAS Rule 4 without DP Id - Non Classic Areo"
+	when 
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+		dpId == null, productCode != null, businessUnit != null)
+		$util : ESASUtil(
+		        esasProdIndBu != null, esasProdBuCdBuMap : esasProdBuCdBu
+		        )
+		processInstance : WorkflowProcessInstance()
+	then
+		$erq.setBusinessUnitPC((String)esasProdBuCdBuMap.get($erq.getProductCode()+","+$erq.getBusinessUnit()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+    	processInstance.setVariable("esasRequest",$erq);
+    	retract(processInstance);
+		System.out.println( "-------------****Rule Execution Details****------------" );
+		System.out.println( "business unit: " + $erq.getBusinessUnit() );
+		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
+		System.out.println( "DP id: " + $erq.getDpId() );
+		System.out.println( "profit center: " + $erq.getProfitCentre() );
+		System.out.println( "rule name: " + $erq.getSatisfiedRuleName() );
+end*/
