@@ -178,7 +178,7 @@ rule "Rule 5 US for FB product"
              )
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "FLET", 
-		indCdBuMapN.get(industryCode) == "Government/US Govt.",
+		indCdBuMapN.get(industryCode) == "Global/US Govt.",
 		countryOfRegistration != null, countryOfRegistration == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
@@ -212,7 +212,7 @@ rule "Rule 5 Not US for FB product"
              )
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "FLET", 
-		indCdBuMapN.get(industryCode) == "Government/US Govt.",
+		indCdBuMapN.get(industryCode) == "Global/US Govt.",
 		countryOfRegistration != null, countryOfRegistration != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
@@ -246,7 +246,7 @@ rule "Rule 6 US for SB product"
              )
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "SWFT", 
-		indCdBuMapN.get(industryCode) == "Government/US Govt.",
+		indCdBuMapN.get(industryCode) == "Global/US Govt.",
 		countryOfRegistration != null, countryOfRegistration == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
@@ -280,7 +280,7 @@ rule "Rule 6 Not US for SB product"
              )
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "SWFT", 
-		indCdBuMapN.get(industryCode) == "Government/US Govt.",
+		indCdBuMapN.get(industryCode) == "Global/US Govt.",
 		countryOfRegistration != null, countryOfRegistration != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
@@ -343,7 +343,7 @@ rule "Rule 8"
 		$util : ServiceOrderUtil(
                  indCdBuMap!=null, indCdBuMapN : indCdBuMap, 
                  proftCtMap != null, proftCtMapN : proftCtMap,
-                 ratePlanBuMap!=null, rtPlanBuMap : ratePlanBuMap,
+                 ratePlanBuMap!=null, rtPlanBuMap : ratePlanBuMap
              )
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		industryCode != null, 
@@ -351,8 +351,8 @@ rule "Rule 8"
 		dpId != null, dpId not in ("3033", "1020"),
 		industryCode not in ("Telecommunications Service Provider", "Professional Services", "Construction"), 
 		dpId != "MCN", indCdBuMapN.get(industryCode) != null,
-		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMap.get(industryCode) != "Government/US Govt.")),
-		rtPlanBuMap.get(rtPlanId+","+industryCd) == null)
+		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMap.get(industryCode) != "Global/US Govt.")),
+		rtPlanBuMap.get(ratePlanId+","+industryCode) == null)
 		process : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());

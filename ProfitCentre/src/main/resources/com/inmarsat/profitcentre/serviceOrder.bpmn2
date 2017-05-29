@@ -75,7 +75,7 @@ System.out.println(&quot;Entering rules&quot;);
         </drools:onEntry-script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
           <drools:script>ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
-System.out.println(&quot;On Exit &quot;+so);</drools:script>
+System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
