@@ -280,6 +280,13 @@ return false;
 
 			ClientResponse response = webResource.type(MediaType.APPLICATION_JSON)
 			   .post(ClientResponse.class, jsonInString);
+			if (response.getStatus() != 200) {
+							System.out.println(&quot;On Service Unavailable ::&quot; +response.getStatus());
+							kcontext.getKnowledgeRuntime().signalEvent(&quot;ExceptionESAS&quot;,kcontext.getVariable(&quot;esasRequest&quot;));
+							
+							System.out.println(&quot;Signal Triggered&quot;);
+
+			}
 			System.out.println(&quot;Output from Server .... \n&quot;);
 			String output = response.getEntity(String.class);
 			System.out.println(output);
@@ -288,7 +295,7 @@ return false;
                      
 	System.out.println(&quot;On Exception!!&quot;);
 	
-			kcontext.getKnowledgeRuntime().signalEvent(&quot;Exception&quot;,kcontext.getVariable(&quot;esasRequest&quot;));
+			kcontext.getKnowledgeRuntime().signalEvent(&quot;ExceptionESAS&quot;,kcontext.getVariable(&quot;esasRequest&quot;));
 		kcontext.setVariable(&quot;errorMsg&quot;,e.getMessage());
 		System.out.println(&quot;Signal Triggered&quot;);
 		  }
@@ -314,9 +321,6 @@ return false;
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
           <drools:script>System.out.println(&quot;Sub Process called&quot;);</drools:script>
         </drools:onEntry-script>
-        <drools:metaData name="customAsync">
-          <drools:metaValue><![CDATA[false]]></drools:metaValue>
-        </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:startEvent id="StartEvent_1" name="On Exception ">
         <bpmn2:extensionElements>
@@ -533,7 +537,7 @@ System.out.println(&quot;Signal Triggered&quot;);
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUXWvzSREee98887RxVBxA" bpmnElement="processStartEvent">
         <dc:Bounds height="30.0" width="30.0" x="90.0" y="580.0"/>
-        <bpmndi:BPMNLabel/>
+        
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUXWwDSREee98887RxVBxA" bpmnElement="_B2EC80BC-4B07-4694-A364-4372C46BEBBF">
         <dc:Bounds height="80.0" width="100.0" x="165.0" y="380.0"/>
@@ -608,32 +612,32 @@ System.out.println(&quot;Signal Triggered&quot;);
       <bpmndi:BPMNEdge id="_OUX9xjSREee98887RxVBxA" bpmnElement="_6BE612E9-FE4F-4AC8-BA67-112706C472E5" sourceElement="_OUXWwDSREee98887RxVBxA" targetElement="_OUXWwTSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="215.0" y="420.0"/>
         <di:waypoint xsi:type="dc:Point" x="349.0" y="420.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_15"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9xzSREee98887RxVBxA" bpmnElement="_3F560477-645F-4C73-9137-08EAB19A4B89" sourceElement="_OUXWwTSREee98887RxVBxA" targetElement="_OUXWwjSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="420.0"/>
         <di:waypoint xsi:type="dc:Point" x="349.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_16"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yDSREee98887RxVBxA" bpmnElement="_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17" sourceElement="_OUXWwTSREee98887RxVBxA" targetElement="_OUX9wDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="420.0"/>
         <di:waypoint xsi:type="dc:Point" x="349.0" y="275.0"/>
-        
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yTSREee98887RxVBxA" bpmnElement="_F95E00E0-CC63-4B5E-B6EA-2598C5FCF864" sourceElement="_OUX9wDSREee98887RxVBxA" targetElement="_OUX9wTSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="275.0"/>
         <di:waypoint xsi:type="dc:Point" x="500.0" y="275.0"/>
-       
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yjSREee98887RxVBxA" bpmnElement="_79832415-DC0D-42B8-BF53-9AEE62545554" sourceElement="_OUXWvzSREee98887RxVBxA" targetElement="_OUX9wjSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="105.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_15"/>
+       
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yzSREee98887RxVBxA" bpmnElement="_D9C3AD18-13D1-46CE-8CDF-0B0A53678706" sourceElement="_OUXWwjSREee98887RxVBxA" targetElement="_OUX9wjSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_16"/>
+      
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9zDSREee98887RxVBxA" bpmnElement="_2A4F8EC4-C6E1-4866-B79E-DDDD68F1DF2F" sourceElement="_OUX9wjSREee98887RxVBxA" targetElement="_OUXWwDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
