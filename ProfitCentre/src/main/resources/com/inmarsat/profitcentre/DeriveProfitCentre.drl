@@ -1,4 +1,4 @@
- package com.inmarsat.profitcentre;
+package com.inmarsat.profitcentre;
 
 import com.inmarsat.profitcentre.ESASRequest;
 import com.inmarsat.profitcentre.ESASUtil;
@@ -21,6 +21,7 @@ ruleflow-group "derive_profitcentre"
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+	
 		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -49,6 +50,7 @@ ruleflow-group "derive_profitcentre"
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+	 	
 		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -73,7 +75,9 @@ ruleflow-group "derive_profitcentre"
 			   countryOfRegistration != "USA", eIndCd : catCode, eBuName : businessUnit)
 		$util : ESASUtil(
 		        proftCtMap != null, proftCt : proftCtMap,
-		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu
+		        esasCntryOfRegBu != null, 
+		        esasCntryOfRegBuMap : esasCntryOfRegBu,
+		        esasCntryOfRegBuMap.contains("Non-USA"+","+eIndCd+","+eBuName)
 		        )
 		processInstance : WorkflowProcessInstance()
 	then
