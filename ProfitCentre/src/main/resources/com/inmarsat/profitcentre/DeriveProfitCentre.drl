@@ -3,11 +3,11 @@ package com.inmarsat.profitcentre;
 import com.inmarsat.profitcentre.ESASRequest;
 import com.inmarsat.profitcentre.ESASUtil;
 import org.jbpm.workflow.instance.WorkflowProcessInstance;
-global java.util.Map compIdBUMap;
-global java.util.Map esasProdIndBu;
-global java.util.Map esasProdBuCdBu;
-global java.util.Map esasCntryOfRegBu;
-global java.util.Map proftCtMap;
+global java.util.Map compIdBu;
+global java.util.Map esasProdIndBuMap;
+global java.util.Map esasProdBuCdBuMap;
+global java.util.Map esasCntryOfRegBuMap;
+global java.util.Map proftCt;
 
 
 rule "ESAS Rule 1 with DP Id - Classic Areo"
@@ -16,12 +16,13 @@ ruleflow-group "derive_profitcentre"
 		$erq : ESASRequest( satisfiedRuleName == null,
 			   profitCentre == null, dpId != null, companyId != null)
 		$util : ESASUtil(
-		        compIdBUMap != null, compIdBu : compIdBUMap,
-		        proftCtMap != null, proftCt : proftCtMap)
+		        compIdBUMap != null,
+		        proftCtMap != null)
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
-	
+		compIdBu=$util.getCompIdBUMap();
+		proftCt=$util.getProftCtMap();
 		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -44,13 +45,14 @@ ruleflow-group "derive_profitcentre"
 			   dpId != null, catCode != null, businessUnit != null , countryOfRegistration != null, countryOfRegistration == "USA",
 			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration)
 		$util : ESASUtil(
-		        proftCtMap != null, proftCt : proftCtMap,
-		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu
+		        proftCtMap != null,
+		        esasCntryOfRegBu != null
 		        )
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
-	 	
+	 	proftCt=$util.getProftCtMap();
+	 	esasCntryOfRegBuMap=$util.getEsasCntryOfRegBu();
 		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -74,14 +76,14 @@ ruleflow-group "derive_profitcentre"
 			   dpId != null, catCode != null, businessUnit != null , countryOfRegistration != null, 
 			   countryOfRegistration != "USA", eIndCd : catCode, eBuName : businessUnit)
 		$util : ESASUtil(
-		        proftCtMap != null, proftCt : proftCtMap,
-		        esasCntryOfRegBu != null, 
-		        esasCntryOfRegBuMap : esasCntryOfRegBu,
-		        esasCntryOfRegBuMap.contains("Non-USA"+","+eIndCd+","+eBuName)
-		        )
+		        proftCtMap != null, 
+		        esasCntryOfRegBu != null 
+		       )
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		proftCt=$util.getProftCtMap();
+	 	esasCntryOfRegBuMap=$util.getEsasCntryOfRegBu();
 		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -104,13 +106,15 @@ ruleflow-group "derive_profitcentre"
 		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
 			   dpId != null, productCode != null, catCode != null)
 		$util : ESASUtil(
-		        proftCtMap != null, proftCt : proftCtMap,
-		        esasProdIndBu != null, esasProdIndBuMap : esasProdIndBu
+		        proftCtMap != null,
+		        esasProdIndBu != null
 		        )
 		processInstance : WorkflowProcessInstance()
 		
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		proftCt=$util.getProftCtMap();
+	 	esasProdIndBuMap=$util.getEsasProdIndBu();
 		$erq.setBusinessUnitPC((String)esasProdIndBuMap.get($erq.getProductCode()+","+$erq.getCatCode()));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
@@ -132,12 +136,14 @@ rule "ESAS Rule 4 with DP Id - Classic Areo"
 		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
 		dpId != null, productCode != null, businessUnit != null)
 		$util : ESASUtil(
-		        proftCtMap != null, proftCt : proftCtMap,
-		        esasProdIndBu != null, esasProdBuCdBuMap : esasProdBuCdBu
+		        proftCtMap != null,
+		        esasProdBuCdBu != null
 		        )
 		processInstance : WorkflowProcessInstance()
 	then
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
+		proftCt=$util.getProftCtMap();
+	 	esasProdBuCdBuMap=$util.getEsasProdBuCdBu();
 		$erq.setBusinessUnitPC((String)esasProdBuCdBuMap.get($erq.getProductCode()+","+$erq.getBusinessUnit()));
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
