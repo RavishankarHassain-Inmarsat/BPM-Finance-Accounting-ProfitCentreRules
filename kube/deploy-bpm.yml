@@ -6,166 +6,9 @@
             "description": "Application template for Red Hat JBoss BPM Suite 6.3 intelligent process server built using S2I.",
             "iconClass": "icon-jboss"
         },
-        "name": "bpm-ips-service-dev"
+        "name": "bpm-ips-service-prod"
     },
     "objects": [
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "spec": {
-                "ports": [
-                    {
-                        "port": 8080,
-                        "targetPort": 8080
-                    }
-                ],
-                "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}"
-                }
-            },
-            "metadata": {
-                "name": "${APPLICATION_NAME}",
-                "labels": {
-                    "application": "${APPLICATION_NAME}"
-                },
-                "annotations": {
-                    "description": "The web server's http port."
-                }
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "spec": {
-                "ports": [
-                    {
-                        "port": 8443,
-                        "targetPort": 8443
-                    }
-                ],
-                "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}"
-                }
-            },
-            "metadata": {
-                "name": "secure-${APPLICATION_NAME}",
-                "labels": {
-                    "application": "${APPLICATION_NAME}"
-                },
-                "annotations": {
-                    "description": "The web server's https port."
-                }
-            }
-        },
-        {
-            "kind": "Service",
-            "apiVersion": "v1",
-            "spec": {
-                "ports": [
-                    {
-                        "port": 3306,
-                        "targetPort": 3306
-                    }
-                ]
-            },
-            "metadata": {
-                "name": "${APPLICATION_NAME}-mysql",
-                "labels": {
-                    "application": "${APPLICATION_NAME}"
-                },
-                "annotations": {
-                    "description": "The database server"
-                }
-            }
-        },
-        {
-            "kind": "Endpoints",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}-mysql"
-            },
-            "subsets": [
-                {
-                    "addresses": [
-                        { "ip":"10.214.28.19" },
-                        { "ip":"10.214.28.27" },
-                        { "ip":"10.214.28.54" }
-                    ],
-                    "ports": [
-                        { "port": 3306, "protocol" : "TCP" , "name" : "mysql" },
-                        { "port": 3306, "protocol" : "TCP" , "name" : "mysql" },
-                        { "port": 3306, "protocol" : "TCP" , "name" : "mysql" }
-                    ]
-                }
-            ]
-        },
-        {
-            "kind": "ImageStream",
-            "apiVersion": "v1",
-            "metadata": {
-                "name": "${APPLICATION_NAME}",
-                "labels": {
-                    "app": "${APPLICATION_NAME}",
-                    "artifact": "${APPLICATION_NAME}",
-                    "container": "java",
-                    "component": "${APPLICATION_NAME}",
-                    "provider": "s2i",
-                    "project": "${APPLICATION_NAME}",
-                    "group": "com.inmarsat.esb.templates"
-                }
-            }
-        },
-        {
-            "kind": "BuildConfig",
-            "apiVersion": "v1",
-            "metadata": {
-              "name": "${APPLICATION_NAME}",
-              "labels": {
-                   "app": "${APPLICATION_NAME}",
-                   "artifact": "${APPLICATION_NAME}",
-                   "container": "java",
-                   "component": "${APPLICATION_NAME}",
-                   "provider": "s2i",
-                   "project": "${APPLICATION_NAME}",
-                   "group": "com.inmarsat.esb.templates"
-              }
-            },
-            "spec": {
-                "source": {
-                    "type": "Git",
-                    "git": {
-                        "uri": "${SOURCE_REPOSITORY_URL}",
-                        "ref": "${SOURCE_REPOSITORY_REF}"
-                    },
-                    "contextDir": "${CONTEXT_DIR}",
-                    "sourceSecret":  {"name": "basicsecret"}
-                },
-                "strategy": {
-                    "type": "Source",
-                    "sourceStrategy": {
-                        "env": [
-                            {
-                                "name": "KIE_CONTAINER_DEPLOYMENT",
-                                "value": "${KIE_CONTAINER_DEPLOYMENT}"
-                            }
-                        ],
-                        "forcePull": true,
-                        "from": {
-                            "kind": "ImageStreamTag",
-                            "namespace": "${IMAGE_STREAM_NAMESPACE}",
-                            "name": "jboss-processserver63-openshift:1.3"
-                        }
-                    }
-                },
-                "output": {
-                    "to": {
-                        "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}:latest"
-                    }
-                },
-                "triggers": []
-            }
-        },
         {
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
@@ -190,13 +33,14 @@
                     {
                         "type": "ImageChange",
                         "imageChangeParams": {
-                            "automatic": true,
+                            "automatic": false,
                             "containerNames": [
                                 "${APPLICATION_NAME}"
                             ],
                             "from": {
                                 "kind": "ImageStreamTag",
-                                "name": "${APPLICATION_NAME}:latest"
+                                "name": "${IMAGE_NAME}:${IMAGE_TAG}",
+                                "namespace": "${SOURCE_NAMESPACE}"
                             }
                         }
                     },
@@ -222,7 +66,7 @@
                         "containers": [
                             {
                                 "name": "${APPLICATION_NAME}",
-                                "image": "${APPLICATION_NAME}:latest",
+                                "image": "${SOURCE_NAMESPACE}/${IMAGE_NAME}:${IMAGE_TAG}"
                                 "imagePullPolicy": "Always",
                                 "volumeMounts": [
                                     {
@@ -231,13 +75,13 @@
                                         "readOnly": true
                                     },
                                      {
-                                         "name": "${APPLICATION_NAME}-configmap",
                                          "mountPath": "/etc/configmap",
+                                         "name": "${APPLICATION_NAME}-configmap",
                                          "readOnly":true
                                      },
                                      {
-                                         "name": "${APPLICATION_NAME}-secret",
                                          "mountPath": "/etc/secret",
+                                         "name": "${APPLICATION_NAME}-secret",
                                          "readOnly":true
                                      }
                                 ],
@@ -507,27 +351,6 @@
                 "required": false
             },
             {
-                "displayName": "Git Repository URL",
-                "description": "Git source URI for application",
-                "name": "SOURCE_REPOSITORY_URL",
-                "value": "https://github.com/jboss-openshift/openshift-quickstarts",
-                "required": true
-            },
-            {
-                "displayName": "Git Reference",
-                "description": "Git branch/tag reference",
-                "name": "SOURCE_REPOSITORY_REF",
-                "value": "1.3",
-                "required": false
-            },
-            {
-                "displayName": "Context Directory",
-                "description": "Path within Git project to build; empty for root project directory.",
-                "name": "CONTEXT_DIR",
-                "value": "processserver/library",
-                "required": false
-            },
-            {
                 "displayName": "Database JNDI Name",
                 "description": "Database JNDI name used by application to resolve the datasource, e.g. java:/jboss/datasources/ExampleDS",
                 "name": "DB_JNDI",
@@ -679,11 +502,17 @@
                 "required": true
             },
             {
-                "displayName": "ImageStream Namespace",
-                "description": "Namespace in which the ImageStreams for Red Hat Middleware images are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.",
-                "name": "IMAGE_STREAM_NAMESPACE",
-                "value": "openshift",
-                "required": true
+                "name": "IMAGE_NAME",
+                "value": "profit-centre"
+            },
+            {
+                "name": "IMAGE_TAG",
+                "value": "test"
+            },
+            {
+                "name": "SOURCE_NAMESPACE",
+                "value": "bpm-dev"
             }
         ]
 }
+
