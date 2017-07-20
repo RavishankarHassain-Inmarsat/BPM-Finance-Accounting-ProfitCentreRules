@@ -8,7 +8,7 @@ global java.util.Map proftCtMap;
 global java.util.Map ratePlanBuMap;
 global java.util.Map salesRegCodeBuMap;
 global java.util.Map customerBuMap;
-global org.slf4j.Logger logger;
+
 
 
 rule "Test"
@@ -19,7 +19,7 @@ processInstance : WorkflowProcessInstance()
 
 then
 		System.out.println("Rules started!!!");
-		logger.info("Logger triggred");
+		
         ServiceOrder order=(ServiceOrder)processInstance.getVariable("serviceOrder");
         ServiceOrderUtil util=(ServiceOrderUtil)processInstance.getVariable("serviceOrderUtil");
        //  ServiceOrder order=new  ServiceOrder();
