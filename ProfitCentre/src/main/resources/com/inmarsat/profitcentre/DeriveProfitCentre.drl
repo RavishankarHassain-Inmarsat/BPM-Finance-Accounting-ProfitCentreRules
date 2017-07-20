@@ -9,6 +9,7 @@ global java.util.Map esasProdBuCdBuMap;
 global java.util.Map esasCntryOfRegBuMap;
 global java.util.Map proftCt;
 
+global org.slf4j.Logger logger;
 
 rule "ESAS Rule 1 with DP Id - Classic Areo"
 ruleflow-group "derive_profitcentre"
@@ -20,6 +21,7 @@ ruleflow-group "derive_profitcentre"
 		        proftCtMap != null)
 		processInstance : WorkflowProcessInstance()
 	then
+	logger.info("Rule 1 Triggered");
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
 		compIdBu=$util.getCompIdBUMap();
 		proftCt=$util.getProftCtMap();
