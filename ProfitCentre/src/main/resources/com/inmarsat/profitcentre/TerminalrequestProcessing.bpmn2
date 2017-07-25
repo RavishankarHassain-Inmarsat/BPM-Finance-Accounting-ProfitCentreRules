@@ -437,7 +437,7 @@ return false;</bpmn2:conditionExpression>
         <di:waypoint xsi:type="dc:Point" x="714.0" y="647.0"/>
         <di:waypoint xsi:type="dc:Point" x="714.0" y="667.0"/>
         <di:waypoint xsi:type="dc:Point" x="713.0" y="687.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_18"/>
+        
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_OUX9wTSREee98887RxVBxA" targetElement="BPMNShape_ExclusiveGateway_1">
         <di:waypoint xsi:type="dc:Point" x="521.0" y="635.0"/>
