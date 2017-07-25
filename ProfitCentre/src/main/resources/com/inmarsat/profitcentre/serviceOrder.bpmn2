@@ -291,7 +291,7 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="_72825301-3E3B-4BA0-827F-EBD9357EC78C" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_678C7B3A-6EC4-437B-8FDA-0FACABCEF145" targetRef="ExclusiveGateway_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_4z0_8zPHEee22dDtJbVFTQ" language="http://www.java.com/java"><![CDATA[return true;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_6C2384CC-0173-425B-8823-0B2641A06BAB" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_5E0C229D-4C9E-4C3C-89BE-61A80F5FA729" targetRef="_4782CB17-16AD-493A-B66E-1AB9A6EAA872">
+    <bpmn2:sequenceFlow id="_6C2384CC-0173-425B-8823-0B2641A06BAB" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" drools:priority="100" sourceRef="_5E0C229D-4C9E-4C3C-89BE-61A80F5FA729" targetRef="_4782CB17-16AD-493A-B66E-1AB9A6EAA872">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_4z0_9DPHEee22dDtJbVFTQ" language="http://www.java.com/java"><![CDATA[return true;]]></bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:exclusiveGateway id="ExclusiveGateway_1" drools:selectable="true" drools:dg="" color:background-color="#f0e68c" color:border-color="#a67f00" color:color="#000000" name="Exclusive Gateway 1" gatewayDirection="Converging">
@@ -393,7 +393,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
     </bpmn2:endEvent>
-    <bpmn2:sequenceFlow id="SequenceFlow_9" drools:priority="1" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_3">
+    <bpmn2:sequenceFlow id="SequenceFlow_9" drools:priority="100" sourceRef="ExclusiveGateway_2" targetRef="EndEvent_3">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_6" language="http://www.java.com/java">return true;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
   </bpmn2:process>
@@ -401,7 +401,7 @@ return false;</bpmn2:conditionExpression>
     <bpmndi:BPMNPlane id="_4z0_-DPHEee22dDtJbVFTQ" bpmnElement="ProfitCentre.serviceOrder">
       <bpmndi:BPMNShape id="_4z0_-TPHEee22dDtJbVFTQ" bpmnElement="processStartEvent">
         <dc:Bounds height="30.0" width="30.0" x="10.0" y="340.0"/>
-        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1" labelStyle="BPMNLabelStyle_1"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_4z0_-jPHEee22dDtJbVFTQ" bpmnElement="_5093EA39-9D88-4722-92AF-906F04FD5B0E">
         <dc:Bounds height="80.0" width="100.0" x="135.0" y="315.0"/>
@@ -447,42 +447,42 @@ return false;</bpmn2:conditionExpression>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
         <dc:Bounds height="36.0" width="36.0" x="880.0" y="332.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
           <dc:Bounds height="15.0" width="65.0" x="866.0" y="368.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
         <dc:Bounds height="50.0" width="50.0" x="465.0" y="690.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_11">
           <dc:Bounds height="30.0" width="57.0" x="462.0" y="740.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_3" bpmnElement="EndEvent_3">
         <dc:Bounds height="36.0" width="36.0" x="583.0" y="697.0"/>
-        <bpmndi:BPMNLabel labelStyle="#//@definitions/@diagrams.0/@labelStyle.0">
+        <bpmndi:BPMNLabel id="BPMNLabel_12" labelStyle="BPMNLabelStyle_1">
           <dc:Bounds height="15.0" width="65.0" x="569.0" y="733.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="_4z1AAzPHEee22dDtJbVFTQ" bpmnElement="_EA5B2221-4EB5-4673-B403-BAFFDACB70C1" sourceElement="_4z0_-jPHEee22dDtJbVFTQ" targetElement="_4z0_-zPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="185.0" y="355.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_13"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ABDPHEee22dDtJbVFTQ" bpmnElement="_3A6945ED-E9A9-41A1-A7CE-ECDC35832D3A" sourceElement="_4z0_-zPHEee22dDtJbVFTQ" targetElement="_4z0__jPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ABTPHEee22dDtJbVFTQ" bpmnElement="_798E5527-0E81-4512-A4A9-A45B711C6168" sourceElement="_4z0_-zPHEee22dDtJbVFTQ" targetElement="_4z0__TPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_15"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ABjPHEee22dDtJbVFTQ" bpmnElement="_3B1C0700-A916-4760-BFD0-3C8335D383A3" sourceElement="_4z0__jPHEee22dDtJbVFTQ" targetElement="_4z0__DPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="340.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="555.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_16"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ABzPHEee22dDtJbVFTQ" bpmnElement="_E3CC362D-267C-4DCB-866A-9272AC3A11FC" sourceElement="_4z0_-zPHEee22dDtJbVFTQ" targetElement="_4z0__zPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
@@ -529,22 +529,22 @@ return false;</bpmn2:conditionExpression>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="635.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="662.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="690.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_23"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_6" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="_4z1AADPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="465.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="615.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_24"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_9" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_EndEvent_3">
         <di:waypoint xsi:type="dc:Point" x="515.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="549.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="583.0" y="715.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_25"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
-    <bpmndi:BPMNLabelStyle>
+    <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
       <dc:Font name="arial" size="9.0"/>
     </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
