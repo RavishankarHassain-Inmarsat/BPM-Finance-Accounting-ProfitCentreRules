@@ -10,6 +10,7 @@ global java.util.Map esasCntryOfRegBuMap;
 global java.util.Map proftCt;
 
 
+
 rule "ESAS Rule 1 with DP Id - Classic Areo"
 ruleflow-group "derive_profitcentre"
 	when 
@@ -20,6 +21,7 @@ ruleflow-group "derive_profitcentre"
 		        proftCtMap != null)
 		processInstance : WorkflowProcessInstance()
 	then
+	
 	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(processInstance.getId());
 		compIdBu=$util.getCompIdBUMap();
 		proftCt=$util.getProftCtMap();
@@ -28,7 +30,8 @@ ruleflow-group "derive_profitcentre"
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
 		update($erq);
     	p.setVariable("esasRequest",$erq);
-    	retract(p);
+    	update(p);
+    	//retract(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $erq.getBusinessUnit() );
 		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
@@ -58,7 +61,8 @@ ruleflow-group "derive_profitcentre"
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
 		update($erq);
     	p.setVariable("esasRequest",$erq);
-    	retract(p);
+    	update(p);
+    	//retract(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $erq.getBusinessUnit() );
 		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
@@ -89,7 +93,8 @@ ruleflow-group "derive_profitcentre"
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
 		update($erq);
     	p.setVariable("esasRequest",$erq);
-    	retract(p);
+    	update(p);
+    	//retract(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $erq.getBusinessUnit() );
 		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
@@ -119,8 +124,10 @@ ruleflow-group "derive_profitcentre"
 		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
 		update($erq);
+		
     	p.setVariable("esasRequest",$erq);
-    	retract(p);
+    	update(p);
+    //	retract(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $erq.getBusinessUnit() );
 		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );
@@ -149,7 +156,8 @@ rule "ESAS Rule 4 with DP Id - Classic Areo"
 		$erq.setSatisfiedRuleName(drools.getRule().getName());
 		update($erq);
     	p.setVariable("esasRequest",$erq);
-    	retract(p);
+    	update(p);
+    	//retract(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $erq.getBusinessUnit() );
 		System.out.println( "business unitPC: " + $erq.getBusinessUnitPC() );

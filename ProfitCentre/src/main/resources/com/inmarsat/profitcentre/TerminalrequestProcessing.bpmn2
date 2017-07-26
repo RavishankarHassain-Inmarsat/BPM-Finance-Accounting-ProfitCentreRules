@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- origin at X=0.0 Y=0.0 -->
-<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn20="http://www.omg.org/bpmn20" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xmlns:java="http://www.java.com/javaTypes" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="_OUU6cDSREee98887RxVBxA" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.3.Final-v20170221-1647-B60" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
+<bpmn2:definitions xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:bpmn2="http://www.omg.org/spec/BPMN/20100524/MODEL" xmlns:bpmn20="http://www.omg.org/bpmn20" xmlns:bpmndi="http://www.omg.org/spec/BPMN/20100524/DI" xmlns:bpsim="http://www.bpsim.org/schemas/1.0" xmlns:color="http://www.omg.org/spec/BPMN/non-normative/color" xmlns:dc="http://www.omg.org/spec/DD/20100524/DC" xmlns:di="http://www.omg.org/spec/DD/20100524/DI" xmlns:drools="http://www.jboss.org/drools" xmlns="http://www.jboss.org/drools" xmlns:java="http://www.java.com/javaTypes" xsi:schemaLocation="http://www.omg.org/spec/BPMN/20100524/MODEL BPMN20.xsd http://www.jboss.org/drools drools.xsd http://www.bpsim.org/schemas/1.0 bpsim.xsd" id="_OUU6cDSREee98887RxVBxA" exporter="org.eclipse.bpmn2.modeler.core" exporterVersion="1.3.3.Final-v20170518-2017-B66" expressionLanguage="http://www.mvel.org/2.0" targetNamespace="http://www.omg.org/bpmn20" typeLanguage="http://www.java.com/javaTypes">
   <bpmn2:itemDefinition id="_restUrlItem" isCollection="false" structureRef="String"/>
   <bpmn2:itemDefinition id="__B2EC80BC-4B07-4694-A364-4372C46BEBBF_esasRequestInputXItem" isCollection="false" structureRef="com.inmarsat.profitcentre.ESASRequest"/>
   <bpmn2:itemDefinition id="__B2EC80BC-4B07-4694-A364-4372C46BEBBF_esasUtilInputXItem" isCollection="false" structureRef="com.inmarsat.profitcentre.ESASUtil"/>
@@ -165,7 +165,7 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:parallelGateway id="_B9018F70-78D3-42BE-B415-330FE569C6D8" drools:selectable="true" color:background-color="#f0e68c" color:border-color="#a67f00" color:color="#000000" name="" gatewayDirection="Diverging">
       <bpmn2:incoming>_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17</bpmn2:incoming>
       <bpmn2:outgoing>_F95E00E0-CC63-4B5E-B6EA-2598C5FCF864</bpmn2:outgoing>
-      <bpmn2:outgoing>_C7A9DADA-D9A5-43CC-9C52-A460BD054079</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_0FCE4DE6-8B4F-4805-9558-9AB213508973" targetRef="_B9018F70-78D3-42BE-B415-330FE569C6D8">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUWvoTSREee98887RxVBxA" language="http://www.java.com/java"><![CDATA[ESASRequest request=(ESASRequest)kcontext.getVariable("esasRequest");
@@ -183,7 +183,7 @@ return false;
         </drools:metaData>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_F95E00E0-CC63-4B5E-B6EA-2598C5FCF864</bpmn2:incoming>
-      <bpmn2:outgoing>_C1CCBC4B-5B93-4410-995E-B0C9E1F3B569</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_OUWvojSREee98887RxVBxA">
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX" drools:dtype="String" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputXItem" name="TaskName"/>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestInputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
@@ -241,6 +241,7 @@ return false;
     <bpmn2:exclusiveGateway id="_42A9CE4C-E21F-45D7-897A-5EFD52E09F6B" drools:selectable="true" drools:dg="" color:background-color="#f0e68c" color:border-color="#a67f00" color:color="#000000" name="" gatewayDirection="Converging">
       <bpmn2:incoming>_79832415-DC0D-42B8-BF53-9AEE62545554</bpmn2:incoming>
       <bpmn2:incoming>_D9C3AD18-13D1-46CE-8CDF-0B0A53678706</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_7</bpmn2:incoming>
       <bpmn2:outgoing>_2A4F8EC4-C6E1-4866-B79E-DDDD68F1DF2F</bpmn2:outgoing>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="_79832415-DC0D-42B8-BF53-9AEE62545554" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="processStartEvent" targetRef="_42A9CE4C-E21F-45D7-897A-5EFD52E09F6B">
@@ -256,7 +257,7 @@ return false;
           <drools:metaValue><![CDATA[Rest Invoke]]></drools:metaValue>
         </drools:metaData>
       </bpmn2:extensionElements>
-      <bpmn2:incoming>_AFF60CC3-19FE-4599-AF0C-1D16369B8DD7</bpmn2:incoming>
+      <bpmn2:incoming>SequenceFlow_9</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
       <bpmn2:script>try {
   
@@ -301,222 +302,6 @@ return false;
 		  }
   </bpmn2:script>
     </bpmn2:scriptTask>
-    <bpmn2:exclusiveGateway id="_85208B88-7BE8-4DFF-9984-09D9DCB199E2" drools:selectable="true" drools:dg="" color:background-color="#f0e68c" color:border-color="#a67f00" color:color="#000000" name="" gatewayDirection="Converging">
-      <bpmn2:incoming>_C7A9DADA-D9A5-43CC-9C52-A460BD054079</bpmn2:incoming>
-      <bpmn2:incoming>_C1CCBC4B-5B93-4410-995E-B0C9E1F3B569</bpmn2:incoming>
-      <bpmn2:outgoing>_AFF60CC3-19FE-4599-AF0C-1D16369B8DD7</bpmn2:outgoing>
-    </bpmn2:exclusiveGateway>
-    <bpmn2:sequenceFlow id="_C1CCBC4B-5B93-4410-995E-B0C9E1F3B569" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E" targetRef="_85208B88-7BE8-4DFF-9984-09D9DCB199E2">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUXWuzSREee98887RxVBxA" language="http://www.java.com/java"><![CDATA[return true;]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_C7A9DADA-D9A5-43CC-9C52-A460BD054079" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_B9018F70-78D3-42BE-B415-330FE569C6D8" targetRef="_85208B88-7BE8-4DFF-9984-09D9DCB199E2">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUXWvDSREee98887RxVBxA" language="http://www.java.com/java"><![CDATA[return true;]]></bpmn2:conditionExpression>
-    </bpmn2:sequenceFlow>
-    <bpmn2:sequenceFlow id="_AFF60CC3-19FE-4599-AF0C-1D16369B8DD7" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_85208B88-7BE8-4DFF-9984-09D9DCB199E2" targetRef="_7C1F0A35-0821-401E-BAD7-A112BE6DC263"/>
-    <bpmn2:subProcess id="SubProcess_1" name="Exception Handling" triggeredByEvent="true">
-      <bpmn2:extensionElements>
-        <drools:metaData name="elementname">
-          <drools:metaValue><![CDATA[Exception Handling]]></drools:metaValue>
-        </drools:metaData>
-        <drools:onEntry-script scriptFormat="http://www.java.com/java">
-          <drools:script>System.out.println(&quot;Sub Process called&quot;);</drools:script>
-        </drools:onEntry-script>
-      </bpmn2:extensionElements>
-      <bpmn2:startEvent id="StartEvent_1" name="On Exception ">
-        <bpmn2:extensionElements>
-          <drools:metaData name="elementname">
-            <drools:metaValue><![CDATA[On Exception ]]></drools:metaValue>
-          </drools:metaData>
-        </bpmn2:extensionElements>
-        <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
-        <bpmn2:dataOutput id="DataOutput_1" name="Signal_1_Output"/>
-        <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
-          <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
-          <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
-        </bpmn2:dataOutputAssociation>
-        <bpmn2:outputSet id="OutputSet_2" name="Output Set 2">
-          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
-        </bpmn2:outputSet>
-        <bpmn2:signalEventDefinition id="SignalEventDefinition_1" signalRef="Signal_1"/>
-      </bpmn2:startEvent>
-      <bpmn2:sequenceFlow id="SequenceFlow_1" drools:priority="1" sourceRef="StartEvent_1" targetRef="UserTask_1"/>
-      <bpmn2:userTask id="UserTask_1" name="Replay">
-        <bpmn2:extensionElements>
-          <drools:metaData name="elementname">
-            <drools:metaValue><![CDATA[Replay]]></drools:metaValue>
-          </drools:metaData>
-          <drools:onEntry-script scriptFormat="http://www.java.com/java">
-            <drools:script>System.out.println(&quot;I got a task!!&quot;);</drools:script>
-          </drools:onEntry-script>
-        </bpmn2:extensionElements>
-        <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
-        <bpmn2:outgoing>SequenceFlow_4</bpmn2:outgoing>
-        <bpmn2:ioSpecification id="InputOutputSpecification_1">
-          <bpmn2:dataInput id="DataInput_1" itemSubjectRef="ItemDefinition_1045" name="TaskName"/>
-          <bpmn2:dataInput id="DataInput_2" itemSubjectRef="ItemDefinition_1" name="Priority"/>
-          <bpmn2:dataInput id="DataInput_3" itemSubjectRef="ItemDefinition_1045" name="Comment"/>
-          <bpmn2:dataInput id="DataInput_4" itemSubjectRef="ItemDefinition_1045" name="Description"/>
-          <bpmn2:dataInput id="DataInput_5" itemSubjectRef="ItemDefinition_1045" name="GroupId"/>
-          <bpmn2:dataInput id="DataInput_6" itemSubjectRef="ItemDefinition_2" name="Skippable"/>
-          <bpmn2:dataInput id="DataInput_7" itemSubjectRef="ItemDefinition_1045" name="Content"/>
-          <bpmn2:dataInput id="DataInput_8" itemSubjectRef="ItemDefinition_1045" name="Locale"/>
-          <bpmn2:dataInput id="DataInput_9" itemSubjectRef="ItemDefinition_1045" name="CreatedBy"/>
-          <bpmn2:dataInput id="DataInput_10" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
-          <bpmn2:dataInput id="DataInput_23" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputXItem" name="errorMsg"/>
-          <bpmn2:dataOutput id="DataOutput_2" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
-          <bpmn2:dataOutput id="DataOutput_3" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputXItem" name="errorMsg"/>
-          <bpmn2:inputSet id="_InputSet_9">
-            <bpmn2:dataInputRefs>DataInput_1</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_2</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_3</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_4</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_5</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_6</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_7</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_8</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_9</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_10</bpmn2:dataInputRefs>
-            <bpmn2:dataInputRefs>DataInput_23</bpmn2:dataInputRefs>
-          </bpmn2:inputSet>
-          <bpmn2:outputSet id="OutputSet_1" name="Output Set">
-            <bpmn2:dataOutputRefs>DataOutput_2</bpmn2:dataOutputRefs>
-            <bpmn2:dataOutputRefs>DataOutput_3</bpmn2:dataOutputRefs>
-          </bpmn2:outputSet>
-        </bpmn2:ioSpecification>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_1">
-          <bpmn2:targetRef>DataInput_1</bpmn2:targetRef>
-          <bpmn2:assignment id="Assignment_1">
-            <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">Replay</bpmn2:from>
-            <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_2">DataInput_1</bpmn2:to>
-          </bpmn2:assignment>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_2">
-          <bpmn2:targetRef>DataInput_2</bpmn2:targetRef>
-          <bpmn2:assignment id="Assignment_2">
-            <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_3">1</bpmn2:from>
-            <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_4">DataInput_2</bpmn2:to>
-          </bpmn2:assignment>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_3">
-          <bpmn2:targetRef>DataInput_3</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_4">
-          <bpmn2:targetRef>DataInput_4</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_5">
-          <bpmn2:targetRef>DataInput_5</bpmn2:targetRef>
-          <bpmn2:assignment id="Assignment_5">
-            <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_9">kie-server</bpmn2:from>
-            <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_10">DataInput_5</bpmn2:to>
-          </bpmn2:assignment>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_6">
-          <bpmn2:targetRef>DataInput_6</bpmn2:targetRef>
-          <bpmn2:assignment id="Assignment_6">
-            <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_11">true</bpmn2:from>
-            <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_12">DataInput_6</bpmn2:to>
-          </bpmn2:assignment>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_7">
-          <bpmn2:targetRef>DataInput_7</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_8">
-          <bpmn2:targetRef>DataInput_8</bpmn2:targetRef>
-          <bpmn2:assignment id="Assignment_8">
-            <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="FormalExpression_15">en-UK</bpmn2:from>
-            <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="FormalExpression_16">DataInput_8</bpmn2:to>
-          </bpmn2:assignment>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_9">
-          <bpmn2:targetRef>DataInput_9</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_10">
-          <bpmn2:sourceRef>esasRequest</bpmn2:sourceRef>
-          <bpmn2:targetRef>DataInput_10</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataInputAssociation id="DataInputAssociation_11">
-          <bpmn2:sourceRef>errorMsg</bpmn2:sourceRef>
-          <bpmn2:targetRef>DataInput_23</bpmn2:targetRef>
-        </bpmn2:dataInputAssociation>
-        <bpmn2:dataOutputAssociation id="DataOutputAssociation_2">
-          <bpmn2:sourceRef>DataOutput_2</bpmn2:sourceRef>
-          <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
-        </bpmn2:dataOutputAssociation>
-        <bpmn2:dataOutputAssociation id="DataOutputAssociation_3">
-          <bpmn2:sourceRef>DataOutput_3</bpmn2:sourceRef>
-          <bpmn2:targetRef>errorMsg</bpmn2:targetRef>
-        </bpmn2:dataOutputAssociation>
-        <bpmn2:potentialOwner id="PotentialOwner_1" name="Potential Owner 1">
-          <bpmn2:resourceAssignmentExpression id="ResourceAssignmentExpression_1">
-            <bpmn2:formalExpression id="FormalExpression_19">kieserver</bpmn2:formalExpression>
-          </bpmn2:resourceAssignmentExpression>
-        </bpmn2:potentialOwner>
-      </bpmn2:userTask>
-      <bpmn2:scriptTask id="ScriptTask_1" name="Rest Call" scriptFormat="http://www.java.com/java">
-        <bpmn2:extensionElements>
-          <drools:metaData name="elementname">
-            <drools:metaValue><![CDATA[Rest Call]]></drools:metaValue>
-          </drools:metaData>
-        </bpmn2:extensionElements>
-        <bpmn2:incoming>SequenceFlow_4</bpmn2:incoming>
-        <bpmn2:outgoing>SequenceFlow_5</bpmn2:outgoing>
-        <bpmn2:script>try {
-  
-  System.out.println(&quot;on Script task&quot;);
-			ESASRequest request=(ESASRequest)kcontext.getVariable(&quot;esasRequest&quot;);
-  System.out.println(&quot;on Script task   ::&quot;+request.getProfitCentre());
-			String restUrl1=(String)kcontext.getVariable(&quot;restUrl&quot;);
-  System.out.println(&quot;on Script task   ::&quot;+restUrl1);
-			Client client = Client.create();
-
-			WebResource webResource = client
-			   .resource(restUrl1);
-			ObjectMapper mapper = new ObjectMapper();
-			
-			//Object to JSON in file
-			
-			request.setStatus(String.valueOf(kcontext.getProcessInstance().getId()));
-			//Object to JSON in String
-			String jsonInString = mapper.writeValueAsString(request);
-			
-
-			ClientResponse response = webResource.type(MediaType.APPLICATION_JSON)
-			   .post(ClientResponse.class, jsonInString);
-
-			/*if (response.getStatus() != 200) {
-				
-System.out.println(&quot;On Service Unavailable ::&quot; +response.getStatus());
-
-			kcontext.getKnowledgeRuntime().signalEvent(&quot;Exception&quot;,kcontext.getVariable(&quot;esasRequest&quot;));
-			kcontext.setVariable(&quot;errorMsg&quot;,&quot;Profit Centre is Down&quot;);
-System.out.println(&quot;Signal Triggered&quot;);
-			}*/
-
-			System.out.println(&quot;Output from Server .... \n&quot;);
-			String output = response.getEntity(String.class);
-			System.out.println(output);
-
-		  } catch (Exception e) {
-                     
-	System.out.println(&quot;On Exception!!&quot;);
-	
-			kcontext.getKnowledgeRuntime().signalEvent(&quot;Exception&quot;,kcontext.getVariable(&quot;esasRequest&quot;));
-		kcontext.setVariable(&quot;errorMsg&quot;,e.getMessage());
-		System.out.println(&quot;Signal Triggered&quot;);
-		  }
-  </bpmn2:script>
-      </bpmn2:scriptTask>
-      <bpmn2:sequenceFlow id="SequenceFlow_4" drools:priority="1" sourceRef="UserTask_1" targetRef="ScriptTask_1"/>
-      <bpmn2:endEvent id="EndEvent_3" name="End Event 3">
-        <bpmn2:extensionElements>
-          <drools:metaData name="elementname">
-            <drools:metaValue><![CDATA[End Event 3]]></drools:metaValue>
-          </drools:metaData>
-        </bpmn2:extensionElements>
-        <bpmn2:incoming>SequenceFlow_5</bpmn2:incoming>
-      </bpmn2:endEvent>
-      <bpmn2:sequenceFlow id="SequenceFlow_5" drools:priority="1" sourceRef="ScriptTask_1" targetRef="EndEvent_3"/>
-    </bpmn2:subProcess>
     <bpmn2:endEvent id="EndEvent_2" name="End Event 2">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -526,18 +311,38 @@ System.out.println(&quot;Signal Triggered&quot;);
       <bpmn2:incoming>SequenceFlow_3</bpmn2:incoming>
     </bpmn2:endEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_3" drools:priority="1" sourceRef="_7C1F0A35-0821-401E-BAD7-A112BE6DC263" targetRef="EndEvent_2"/>
+    <bpmn2:exclusiveGateway id="ExclusiveGateway_1" name="Exclusive Gateway 1" gatewayDirection="Diverging">
+      <bpmn2:incoming>SequenceFlow_2</bpmn2:incoming>
+      <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
+      <bpmn2:outgoing>SequenceFlow_8</bpmn2:outgoing>
+    </bpmn2:exclusiveGateway>
+    <bpmn2:sequenceFlow id="SequenceFlow_2" drools:priority="1" sourceRef="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E" targetRef="ExclusiveGateway_1"/>
+    <bpmn2:sequenceFlow id="SequenceFlow_7" drools:priority="1" sourceRef="ExclusiveGateway_1" targetRef="_42A9CE4C-E21F-45D7-897A-5EFD52E09F6B">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">ESASRequest request=(ESASRequest)kcontext.getVariable(&quot;esasRequest&quot;);
+if(request.getProfitCentre()==null)
+{
+  return true;
+}
+return false;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:endEvent id="EndEvent_1" name="End Event 1">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[End Event 1]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_8</bpmn2:incoming>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_8" drools:priority="100" sourceRef="ExclusiveGateway_1" targetRef="EndEvent_1">
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="FormalExpression_6" language="http://www.java.com/java">return true;</bpmn2:conditionExpression>
+    </bpmn2:sequenceFlow>
+    <bpmn2:sequenceFlow id="SequenceFlow_9" drools:priority="100" sourceRef="_B9018F70-78D3-42BE-B415-330FE569C6D8" targetRef="_7C1F0A35-0821-401E-BAD7-A112BE6DC263"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="_OUXWvTSREee98887RxVBxA">
     <bpmndi:BPMNPlane id="_OUXWvjSREee98887RxVBxA" bpmnElement="serviceProvisioning.TerminalrequestProcessing">
-      <bpmndi:BPMNShape id="BPMNShape_SubProcess_1" bpmnElement="SubProcess_1" isExpanded="true">
-        <dc:Bounds height="150.0" width="514.0" x="720.0" y="130.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_1">
-          <dc:Bounds height="15.0" width="106.0" x="726.0" y="133.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUXWvzSREee98887RxVBxA" bpmnElement="processStartEvent">
         <dc:Bounds height="30.0" width="30.0" x="90.0" y="580.0"/>
-        
+        <bpmndi:BPMNLabel id="BPMNLabel_1" labelStyle="BPMNLabelStyle_1"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUXWwDSREee98887RxVBxA" bpmnElement="_B2EC80BC-4B07-4694-A364-4372C46BEBBF">
         <dc:Bounds height="80.0" width="100.0" x="165.0" y="380.0"/>
@@ -560,9 +365,9 @@ System.out.println(&quot;Signal Triggered&quot;);
         <bpmndi:BPMNLabel id="BPMNLabel_5"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUX9wTSREee98887RxVBxA" bpmnElement="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E">
-        <dc:Bounds height="80.0" width="100.0" x="450.0" y="235.0"/>
+        <dc:Bounds height="80.0" width="100.0" x="471.0" y="555.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_6">
-          <dc:Bounds height="30.0" width="60.0" x="470.0" y="260.0"/>
+          <dc:Bounds height="30.0" width="60.0" x="491.0" y="580.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUX9wjSREee98887RxVBxA" bpmnElement="_42A9CE4C-E21F-45D7-897A-5EFD52E09F6B" isMarkerVisible="true">
@@ -570,43 +375,27 @@ System.out.println(&quot;Signal Triggered&quot;);
         <bpmndi:BPMNLabel id="BPMNLabel_7"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_OUX9wzSREee98887RxVBxA" bpmnElement="_7C1F0A35-0821-401E-BAD7-A112BE6DC263">
-        <dc:Bounds height="80.0" width="100.0" x="585.0" y="480.0"/>
+        <dc:Bounds height="80.0" width="100.0" x="664.0" y="567.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_8">
-          <dc:Bounds height="15.0" width="64.0" x="603.0" y="512.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="_OUX9xTSREee98887RxVBxA" bpmnElement="_85208B88-7BE8-4DFF-9984-09D9DCB199E2" isMarkerVisible="true">
-        <dc:Bounds height="40.0" width="40.0" x="615.0" y="400.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_10"/>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_StartEvent_1" bpmnElement="StartEvent_1">
-        <dc:Bounds height="36.0" width="36.0" x="741.0" y="179.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_11">
-          <dc:Bounds height="15.0" width="75.0" x="722.0" y="215.0"/>
-        </bpmndi:BPMNLabel>
-      </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_UserTask_1" bpmnElement="UserTask_1" isExpanded="true">
-        <dc:Bounds height="50.0" width="110.0" x="831.0" y="172.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_12">
-          <dc:Bounds height="15.0" width="38.0" x="867.0" y="189.0"/>
+          <dc:Bounds height="15.0" width="64.0" x="682.0" y="599.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_2" bpmnElement="EndEvent_2">
-        <dc:Bounds height="36.0" width="36.0" x="753.0" y="502.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_9">
-          <dc:Bounds height="15.0" width="65.0" x="739.0" y="538.0"/>
+        <dc:Bounds height="36.0" width="36.0" x="695.0" y="687.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_9" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="15.0" width="65.0" x="681.0" y="723.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_ScriptTask_1" bpmnElement="ScriptTask_1" isExpanded="true">
-        <dc:Bounds height="50.0" width="110.0" x="1000.0" y="172.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_13">
-          <dc:Bounds height="15.0" width="51.0" x="1029.0" y="189.0"/>
+      <bpmndi:BPMNShape id="BPMNShape_ExclusiveGateway_1" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
+        <dc:Bounds height="50.0" width="50.0" x="495.0" y="680.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_10">
+          <dc:Bounds height="30.0" width="57.0" x="492.0" y="730.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
-      <bpmndi:BPMNShape id="BPMNShape_EndEvent_3" bpmnElement="EndEvent_3">
-        <dc:Bounds height="36.0" width="36.0" x="1178.0" y="179.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_14">
-          <dc:Bounds height="15.0" width="65.0" x="1164.0" y="215.0"/>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="613.0" y="687.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_11" labelStyle="BPMNLabelStyle_1">
+          <dc:Bounds height="15.0" width="65.0" x="599.0" y="723.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="_OUX9xjSREee98887RxVBxA" bpmnElement="_6BE612E9-FE4F-4AC8-BA67-112706C472E5" sourceElement="_OUXWwDSREee98887RxVBxA" targetElement="_OUXWwTSREee98887RxVBxA">
@@ -622,70 +411,62 @@ System.out.println(&quot;Signal Triggered&quot;);
       <bpmndi:BPMNEdge id="_OUX9yDSREee98887RxVBxA" bpmnElement="_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17" sourceElement="_OUXWwTSREee98887RxVBxA" targetElement="_OUX9wDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="420.0"/>
         <di:waypoint xsi:type="dc:Point" x="349.0" y="275.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_17"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yTSREee98887RxVBxA" bpmnElement="_F95E00E0-CC63-4B5E-B6EA-2598C5FCF864" sourceElement="_OUX9wDSREee98887RxVBxA" targetElement="_OUX9wTSREee98887RxVBxA">
-        <di:waypoint xsi:type="dc:Point" x="349.0" y="275.0"/>
-        <di:waypoint xsi:type="dc:Point" x="500.0" y="275.0"/>
-        <bpmndi:BPMNLabel/>
+        <di:waypoint xsi:type="dc:Point" x="369.0" y="275.0"/>
+        <di:waypoint xsi:type="dc:Point" x="521.0" y="275.0"/>
+        <di:waypoint xsi:type="dc:Point" x="521.0" y="555.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_18"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yjSREee98887RxVBxA" bpmnElement="_79832415-DC0D-42B8-BF53-9AEE62545554" sourceElement="_OUXWvzSREee98887RxVBxA" targetElement="_OUX9wjSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="105.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
-       
+        <bpmndi:BPMNLabel id="BPMNLabel_12"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9yzSREee98887RxVBxA" bpmnElement="_D9C3AD18-13D1-46CE-8CDF-0B0A53678706" sourceElement="_OUXWwjSREee98887RxVBxA" targetElement="_OUX9wjSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="349.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
-      
+        <bpmndi:BPMNLabel id="BPMNLabel_13"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_OUX9zDSREee98887RxVBxA" bpmnElement="_2A4F8EC4-C6E1-4866-B79E-DDDD68F1DF2F" sourceElement="_OUX9wjSREee98887RxVBxA" targetElement="_OUXWwDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="420.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_17"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_OUYk0TSREee98887RxVBxA" bpmnElement="_C1CCBC4B-5B93-4410-995E-B0C9E1F3B569" sourceElement="_OUX9wTSREee98887RxVBxA" targetElement="_OUX9xTSREee98887RxVBxA">
-        <di:waypoint xsi:type="dc:Point" x="500.0" y="275.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="275.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="420.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_19"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_OUYk0jSREee98887RxVBxA" bpmnElement="_C7A9DADA-D9A5-43CC-9C52-A460BD054079" sourceElement="_OUX9wDSREee98887RxVBxA" targetElement="_OUX9xTSREee98887RxVBxA">
-        <di:waypoint xsi:type="dc:Point" x="349.0" y="275.0"/>
-        <di:waypoint xsi:type="dc:Point" x="349.0" y="110.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="110.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="420.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_20"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="_OUYk0zSREee98887RxVBxA" bpmnElement="_AFF60CC3-19FE-4599-AF0C-1D16369B8DD7" sourceElement="_OUX9xTSREee98887RxVBxA" targetElement="_OUX9wzSREee98887RxVBxA">
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="420.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="520.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_21"/>
-      </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_StartEvent_1" targetElement="BPMNShape_UserTask_1">
-        <di:waypoint xsi:type="dc:Point" x="777.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="804.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="831.0" y="197.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_22"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="_OUX9wzSREee98887RxVBxA" targetElement="BPMNShape_EndEvent_2">
-        <di:waypoint xsi:type="dc:Point" x="685.0" y="520.0"/>
-        <di:waypoint xsi:type="dc:Point" x="719.0" y="520.0"/>
-        <di:waypoint xsi:type="dc:Point" x="753.0" y="520.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_18"/>
+        <di:waypoint xsi:type="dc:Point" x="714.0" y="647.0"/>
+        <di:waypoint xsi:type="dc:Point" x="714.0" y="667.0"/>
+        <di:waypoint xsi:type="dc:Point" x="713.0" y="687.0"/>
+        
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_4" bpmnElement="SequenceFlow_4" sourceElement="BPMNShape_UserTask_1" targetElement="BPMNShape_ScriptTask_1">
-        <di:waypoint xsi:type="dc:Point" x="941.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="970.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="1000.0" y="197.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_23"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_OUX9wTSREee98887RxVBxA" targetElement="BPMNShape_ExclusiveGateway_1">
+        <di:waypoint xsi:type="dc:Point" x="521.0" y="635.0"/>
+        <di:waypoint xsi:type="dc:Point" x="521.0" y="657.0"/>
+        <di:waypoint xsi:type="dc:Point" x="520.0" y="680.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14"/>
       </bpmndi:BPMNEdge>
-      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_5" bpmnElement="SequenceFlow_5" sourceElement="BPMNShape_ScriptTask_1" targetElement="BPMNShape_EndEvent_3">
-        <di:waypoint xsi:type="dc:Point" x="1110.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="1144.0" y="197.0"/>
-        <di:waypoint xsi:type="dc:Point" x="1178.0" y="197.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_24"/>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_7" bpmnElement="SequenceFlow_7" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="_OUX9wjSREee98887RxVBxA">
+        <di:waypoint xsi:type="dc:Point" x="495.0" y="705.0"/>
+        <di:waypoint xsi:type="dc:Point" x="215.0" y="705.0"/>
+        <di:waypoint xsi:type="dc:Point" x="215.0" y="615.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_19"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_8" bpmnElement="SequenceFlow_8" sourceElement="BPMNShape_ExclusiveGateway_1" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="545.0" y="705.0"/>
+        <di:waypoint xsi:type="dc:Point" x="579.0" y="705.0"/>
+        <di:waypoint xsi:type="dc:Point" x="613.0" y="705.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_20"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_9" bpmnElement="SequenceFlow_9" sourceElement="_OUX9wDSREee98887RxVBxA" targetElement="_OUX9wzSREee98887RxVBxA">
+        <di:waypoint xsi:type="dc:Point" x="349.0" y="255.0"/>
+        <di:waypoint xsi:type="dc:Point" x="349.0" y="245.0"/>
+        <di:waypoint xsi:type="dc:Point" x="714.0" y="245.0"/>
+        <di:waypoint xsi:type="dc:Point" x="714.0" y="567.0"/>
+        <bpmndi:BPMNLabel id="BPMNLabel_21"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
+    <bpmndi:BPMNLabelStyle id="BPMNLabelStyle_1">
+      <dc:Font name="arial" size="9.0"/>
+    </bpmndi:BPMNLabelStyle>
   </bpmndi:BPMNDiagram>
 </bpmn2:definitions>
