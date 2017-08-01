@@ -353,7 +353,7 @@ rule "Rule 8"
 		dpId != null, dpId not in ("3033", "1020"),
 		industryCode not in ("Telecommunications Service Provider", "Professional Services", "Construction"), 
 		dpId != "MCN", indCdBuMapN.get(industryCode) != null,
-		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMap.get(industryCode) != "Global/US Govt.")),
+		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMapN.get(industryCode) != "Global/US Govt.")),
 		rtPlanBuMap.get(ratePlanId+","+industryCode) == null)
 		process : WorkflowProcessInstance()
 	then
