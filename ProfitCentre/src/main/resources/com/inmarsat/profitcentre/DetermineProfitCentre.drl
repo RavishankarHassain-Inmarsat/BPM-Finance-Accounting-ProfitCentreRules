@@ -352,7 +352,8 @@ rule "Rule 8"
 		profitCenter == null, 
 		dpId != null, dpId not in ("3033", "1020"),
 		industryCode not in ("Telecommunications Service Provider", "Professional Services", "Construction"), 
-		dpId != "MCN", indCdBuMapN.get(industryCode) != null,
+		customerName != null,customerName !="BEIJING MARINE COMMUNICATIONS AND NAVIGATION COMPANY LIMITED", 
+		indCdBuMapN.get(industryCode) != null,
 		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMapN.get(industryCode) != "Global/US Govt.")),
 		rtPlanBuMap.get(ratePlanId+","+industryCode) == null)
 		process : WorkflowProcessInstance()
