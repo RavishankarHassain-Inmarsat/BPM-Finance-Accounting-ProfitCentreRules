@@ -43,10 +43,10 @@ ruleflow-group "profitCentre"
 		     salesRegCdBuMap!=null,
 		   proftCtMap != null
 		 )
-		  process: WorkflowProcessInstance()
+		 // process: WorkflowProcessInstance()
 		 
 	then
-	     WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	    
 	    salesRegCodeBuMap=$util.getSalesRegCdBuMap();
 	    proftCtMap=$util.getProftCtMap();
 		$so.setBusinessUnit((String)salesRegCodeBuMap.get($so.getSalesRegionCode()));
@@ -54,8 +54,8 @@ ruleflow-group "profitCentre"
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		//$so.setManualValidationNeeded(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "DP id: " + $so.getDpId() );
@@ -77,17 +77,17 @@ ruleflow-group "profitCentre"
 			$util:ServiceOrderUtil(
                  proftCtMap!=null
              )
-              process: WorkflowProcessInstance()
+              //process: WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		proftCtMap=$util.getProftCtMap();
 		$so.setBusinessUnit("Maritime");
 		$so.setProfitCenter((String)proftCtMap.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		//$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p); 
+		//p.setVariable("serviceOrder",$so);
+		//update(p); 
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "DP id: " + $so.getDpId() );
@@ -112,17 +112,17 @@ rule "Rule 3 for RatePlan"
 			industryCd : industryCode,
 			rtPlanBuMap.get(rtPlanId+","+industryCd) != null)
 			
-              process: WorkflowProcessInstance()
+             // process: WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+//	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		proftCtMap=$util.getProftCtMap();
 		$so.setBusinessUnit((String)rtPlanBuMap.get(rtPlanId+","+industryCd));
 		$so.setProfitCenter((String)proftCtMap.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -150,17 +150,17 @@ rule "Rule 4 for customer service provider"
 		   // custBuMap.get(customerName+","+industryCode) != null
 		  )
 		    
-            process : WorkflowProcessInstance()
+           // process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		proftCtMap=$util.getProftCtMap();
 		$so.setBusinessUnit((String)custBuMap.get($so.getCustomerName()+","+$so.getIndustryCode()));
 		$so.setProfitCenter((String)proftCtMap.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -184,16 +184,16 @@ rule "Rule 5 US for FB product"
 		countryOfRegistration != null, countryOfRegistration == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
-        process : WorkflowProcessInstance()
+      //  process : WorkflowProcessInstance()
 	then
-	 WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	// WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("US Government");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -218,16 +218,16 @@ rule "Rule 5 Not US for FB product"
 		countryOfRegistration != null, countryOfRegistration != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
-        process : WorkflowProcessInstance()
+       // process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("Global Government");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -252,16 +252,16 @@ rule "Rule 6 US for SB product"
 		countryOfRegistration != null, countryOfRegistration == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
-        process : WorkflowProcessInstance()
+       // process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("US Government");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+	//	p.setVariable("serviceOrder",$so);
+	//	update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -286,16 +286,16 @@ rule "Rule 6 Not US for SB product"
 		countryOfRegistration != null, countryOfRegistration != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
-        process : WorkflowProcessInstance()
+       // process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("Global Government");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+	//	p.setVariable("serviceOrder",$so);
+	//	update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -319,16 +319,16 @@ rule "Rule 7"
 		indCdBuMapN.get(industryCode) == "Aviation",
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
-        process : WorkflowProcessInstance()
+      //  process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("Aviation");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
@@ -356,16 +356,16 @@ rule "Rule 8"
 		indCdBuMapN.get(industryCode) != null,
 		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMapN.get(industryCode) != "Global/US Govt.")),
 		rtPlanBuMap.get(ratePlanId+","+industryCode) == null)
-		process : WorkflowProcessInstance()
+	//	process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit((String)indCdBuMapN.get($so.getIndustryCode()));
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
-		p.setVariable("serviceOrder",$so);
-		update(p);
+		//p.setVariable("serviceOrder",$so);
+		//update(p);
 		System.out.println( "-------------****Rule 8 Execution Details****------------" );
 		System.out.println( "business unit: " + $so.getBusinessUnit() );
 		System.out.println( "industry code: " + $so.getIndustryCode() );
