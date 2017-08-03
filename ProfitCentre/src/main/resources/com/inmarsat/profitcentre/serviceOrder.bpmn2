@@ -67,9 +67,7 @@
           <drools:metaValue><![CDATA[Profit Centre Determination For I4 Services]]></drools:metaValue>
         </drools:metaData>
         <drools:onEntry-script scriptFormat="http://www.java.com/java">
-          <drools:script>kcontext.getKieRuntime().insert(kcontext.getProcessInstance());
-
-System.out.println(&quot;Entering rules&quot;);
+          <drools:script>System.out.println(&quot;Entering rules&quot;);
 
 </drools:script>
         </drools:onEntry-script>
@@ -487,7 +485,7 @@ return false;</bpmn2:conditionExpression>
       <bpmndi:BPMNEdge id="_4z1ABzPHEee22dDtJbVFTQ" bpmnElement="_E3CC362D-267C-4DCB-866A-9272AC3A11FC" sourceElement="_4z0_-zPHEee22dDtJbVFTQ" targetElement="_4z0__zPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="635.0" y="350.0"/>
-       
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ACTPHEee22dDtJbVFTQ" bpmnElement="_72825301-3E3B-4BA0-827F-EBD9357EC78C" sourceElement="_4z0__TPHEee22dDtJbVFTQ" targetElement="_4z1AADPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="595.0"/>
