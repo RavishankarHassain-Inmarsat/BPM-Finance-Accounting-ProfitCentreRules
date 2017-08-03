@@ -181,7 +181,7 @@ rule "Rule 5 US for FB product"
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "FLET", 
 		indCdBuMapN.get(industryCode) == "Global/US Govt.",
-		countryOfRegistration != null, countryOfRegistration == "US", 
+		countryName != null, countryName == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
       //  process : WorkflowProcessInstance()
@@ -215,7 +215,7 @@ rule "Rule 5 Not US for FB product"
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "FLET", 
 		indCdBuMapN.get(industryCode) == "Global/US Govt.",
-		countryOfRegistration != null, countryOfRegistration != "US", 
+		countryName != null, countryName != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
        // process : WorkflowProcessInstance()
@@ -249,7 +249,7 @@ rule "Rule 6 US for SB product"
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "SWFT", 
 		indCdBuMapN.get(industryCode) == "Global/US Govt.",
-		countryOfRegistration != null, countryOfRegistration == "US", 
+		countryName != null, countryName == "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
        // process : WorkflowProcessInstance()
@@ -283,7 +283,7 @@ rule "Rule 6 Not US for SB product"
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		productCode != null, productCode == "SWFT", 
 		indCdBuMapN.get(industryCode) == "Global/US Govt.",
-		countryOfRegistration != null, countryOfRegistration != "US", 
+		countryName != null, countryName != "US", 
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
        // process : WorkflowProcessInstance()
