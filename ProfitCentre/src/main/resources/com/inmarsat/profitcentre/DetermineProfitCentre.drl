@@ -288,7 +288,7 @@ rule "Rule 6 Not US for SB product"
 		dpId not in ("3033", "1020"))
        // process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("Global Government");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
@@ -321,7 +321,7 @@ rule "Rule 7"
 		dpId not in ("3033", "1020"))
       //  process : WorkflowProcessInstance()
 	then
-	WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
+	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		$so.setBusinessUnit("Aviation");
 		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
