@@ -230,36 +230,6 @@
 				</configuration>
 			</plugin>
 
-			<!-- DO NOT REMOVE: Required to copy the kube config files into the kube 
-				dir. The automated deployment process will look in the kube directory for 
-				the configuration. -->
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-resources-plugin</artifactId>
-				<version>2.7</version>
-				<executions>
-					<execution>
-						<id>copy-resource-one</id>
-						<phase>install</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${project.basedir}/kube</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${project.basedir}/kube-generator/kube</directory>
-									<includes>
-										<include>*.json</include>
-										<include>*.yml</include>
-									</includes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
-				</executions>
-			</plugin>
-
 			<!-- DO NOT REMOVE: Required for packaging the app and dependencies in 
 				a zip. The automated deployment process will look for this format on nexus 
 				when building the image. -->
