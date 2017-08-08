@@ -112,7 +112,7 @@
                     "component": "${APPLICATION_NAME}",
                     "provider": "s2i",
                     "project": "${APPLICATION_NAME}",
-                    "group": "com.inmarsat.esb.templates"
+                    "group": "com.inmarsat.bpm.finance"
                 }
             }
         },
@@ -128,7 +128,7 @@
                    "component": "${APPLICATION_NAME}",
                    "provider": "s2i",
                    "project": "${APPLICATION_NAME}",
-                   "group": "com.inmarsat.esb.templates"
+                   "group": "com.inmarsat.bpm.finance"
               }
             },
             "spec": {
@@ -139,7 +139,7 @@
                         "ref": "${SOURCE_REPOSITORY_REF}"
                     },
                     "contextDir": "${CONTEXT_DIR}",
-                    "sourceSecret":  {"name": "basicsecret"}
+                    "sourceSecret":  {"name": "githubcreds"}
                 },
                 "strategy": {
                     "type": "Source",
@@ -180,7 +180,7 @@
                     "deploymentconfig": "${APPLICATION_NAME}",
                     "provider": "s2i",
                     "project": "${APPLICATION_NAME}",
-                    "group": "com.inmarsat.esb.templates"
+                    "group": "com.inmarsat.bpm.finance"
                 }
             },
             "spec": {

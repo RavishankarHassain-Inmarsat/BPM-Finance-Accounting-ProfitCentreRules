@@ -22,7 +22,7 @@
                     "deploymentconfig": "${APPLICATION_NAME}",
                     "provider": "s2i",
                     "project": "${APPLICATION_NAME}",
-                    "group": "com.inmarsat.esb.templates"
+                    "group": "com.inmarsat.bpm.finance"
                 }
             },
             "spec": {
@@ -503,15 +503,15 @@
             },
             {
                 "name": "IMAGE_NAME",
-                "value": "profit-centre"
+                "value": "accounting-profit-centre-rules"
             },
             {
                 "name": "IMAGE_TAG",
-                "value": "test"
+                "value": "sit"
             },
             {
                 "name": "SOURCE_NAMESPACE",
-                "value": "bpm-dev"
+                "value": "finance-dev"
             }
         ]
 }
