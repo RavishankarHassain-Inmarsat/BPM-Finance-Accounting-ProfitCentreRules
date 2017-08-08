@@ -145,9 +145,8 @@ rule "Rule 4 for customer service provider"
 		    industryCode != null, 
 		    profitCenter == null, 
 		    dpId != null, 
-		    dpId not in ("3033", "1020")
-		    
-		   // custBuMap.get(customerName+","+industryCode) != null
+		    dpId not in ("3033", "1020"),
+		    custBuMap.get(dpId+","+industryCode) != null
 		  )
 		    
            // process : WorkflowProcessInstance()
