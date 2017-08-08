@@ -145,8 +145,8 @@ rule "Rule 4 for customer service provider"
 		    industryCode != null, 
 		    profitCenter == null, 
 		    dpId != null, 
-		    dpId not in ("3033", "1020"),
-		    customerName != null
+		    dpId not in ("3033", "1020")
+		    
 		   // custBuMap.get(customerName+","+industryCode) != null
 		  )
 		    
@@ -154,7 +154,7 @@ rule "Rule 4 for customer service provider"
 	then
 	//WorkflowProcessInstance p = (WorkflowProcessInstance)kcontext.getKieRuntime().getProcessInstance(process.getId());
 		proftCtMap=$util.getProftCtMap();
-		$so.setBusinessUnit((String)custBuMap.get($so.getCustomerName()+","+$so.getIndustryCode()));
+		$so.setBusinessUnit((String)custBuMap.get($so.getDpId()+","+$so.getIndustryCode()));
 		$so.setProfitCenter((String)proftCtMap.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
@@ -350,9 +350,8 @@ rule "Rule 8"
 		$so : ServiceOrder( satisfiedRuleName == null, 
 		industryCode != null, 
 		profitCenter == null, 
-		dpId != null, dpId not in ("3033", "1020"),
+		dpId != null, dpId not in ("3033", "1020","1090"),
 		industryCode not in ("Telecommunications Service Provider", "Professional Services", "Construction"), 
-		customerName != null,customerName !="BEIJING MARINE COMMUNICATIONS AND NAVIGATION COMPANY LIMITED", 
 		indCdBuMapN.get(industryCode) != null,
 		(productCode == null || (productCode not in ("SWFT","FLET") && indCdBuMapN.get(industryCode) != "Global/US Govt.")),
 		rtPlanBuMap.get(ratePlanId+","+industryCode) == null)

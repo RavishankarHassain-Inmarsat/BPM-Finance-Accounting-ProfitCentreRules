@@ -155,12 +155,16 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
       </bpmn2:potentialOwner>
     </bpmn2:userTask>
     <bpmn2:sequenceFlow id="_3F560477-645F-4C73-9137-08EAB19A4B89" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_0FCE4DE6-8B4F-4805-9558-9AB213508973" targetRef="_325AD1E7-891E-4C86-9EC1-43205F52F8D8">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUWvoDSREee98887RxVBxA" language="http://www.java.com/java"><![CDATA[ESASRequest request=(ESASRequest)kcontext.getVariable("esasRequest");
-if(request.getProfitCentre()==null)
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUWvoDSREee98887RxVBxA" language="http://www.java.com/java">ESASRequest request=(ESASRequest)kcontext.getVariable(&quot;esasRequest&quot;);
+if(request.getDpId()!=null &amp;&amp; request.getProfitCentre()==null)
 {
   return true;
 }
-return false;]]></bpmn2:conditionExpression>
+else if(request.getDpId()==null &amp;&amp; request.getBusinessUnitPC()==null)
+{
+return true;
+}
+return false;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:parallelGateway id="_B9018F70-78D3-42BE-B415-330FE569C6D8" drools:selectable="true" color:background-color="#f0e68c" color:border-color="#a67f00" color:color="#000000" name="" gatewayDirection="Diverging">
       <bpmn2:incoming>_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17</bpmn2:incoming>
@@ -168,13 +172,16 @@ return false;]]></bpmn2:conditionExpression>
       <bpmn2:outgoing>SequenceFlow_9</bpmn2:outgoing>
     </bpmn2:parallelGateway>
     <bpmn2:sequenceFlow id="_8660B5CF-7F67-4DBE-9AE7-D77BD48D6B17" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_0FCE4DE6-8B4F-4805-9558-9AB213508973" targetRef="_B9018F70-78D3-42BE-B415-330FE569C6D8">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUWvoTSREee98887RxVBxA" language="http://www.java.com/java"><![CDATA[ESASRequest request=(ESASRequest)kcontext.getVariable("esasRequest");
-if(request.getProfitCentre()!=null)
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_OUWvoTSREee98887RxVBxA" language="http://www.java.com/java">ESASRequest request=(ESASRequest)kcontext.getVariable(&quot;esasRequest&quot;);
+if(request.getDpId()!=null &amp;&amp; request.getProfitCentre()!=null)
 {
   return true;
 }
-return false;
-]]></bpmn2:conditionExpression>
+else if(request.getDpId()==null &amp;&amp; request.getBusinessUnitPC()!=null)
+{
+return true;
+}
+return false;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:userTask id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E" drools:selectable="true" drools:scriptFormat="http://www.java.com/java" color:background-color="#fafad2" color:border-color="#000000" color:color="#000000" name="Manual Verification">
       <bpmn2:extensionElements>
