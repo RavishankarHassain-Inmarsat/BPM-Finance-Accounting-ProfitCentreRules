@@ -503,8 +503,7 @@ return false;</bpmn2:conditionExpression>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="240.0" y="594.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="595.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_17"/>
-      </bpmndi:BPMNEdge>
+        </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_4z1ACjPHEee22dDtJbVFTQ" bpmnElement="_6C2384CC-0173-425B-8823-0B2641A06BAB" sourceElement="_4z0__jPHEee22dDtJbVFTQ" targetElement="_4z0__zPHEee22dDtJbVFTQ">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="76.0"/>
