@@ -105,18 +105,20 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
       <bpmn2:outgoing>_D9C3AD18-13D1-46CE-8CDF-0B0A53678706</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_OUU6dzSREee98887RxVBxA">
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX" drools:dtype="String" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputXItem" name="TaskName"/>
-        <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestInputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX" drools:dtype="Object" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataInput id="DataInput_1" itemSubjectRef="ItemDefinition_6" name="esasUtil"/>
         <bpmn2:dataOutput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="ItemDefinition_6" name="esasUtil"/>
         <bpmn2:inputSet id="_OUU6eDSREee98887RxVBxA">
-          <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>DataInput_1</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_OUVhgDSREee98887RxVBxA">
           <bpmn2:dataOutputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_OUVhgTSREee98887RxVBxA">
@@ -125,10 +127,6 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
           <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_OUVhgzSREee98887RxVBxA">ManualSegmentation</bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_OUVhhDSREee98887RxVBxA">_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_OUVhhTSREee98887RxVBxA">
-        <bpmn2:sourceRef>esasRequest</bpmn2:sourceRef>
-        <bpmn2:targetRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_OUVhhjSREee98887RxVBxA">
         <bpmn2:targetRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX</bpmn2:targetRef>
@@ -144,9 +142,17 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_OUWIlDSREee98887RxVBxA">_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_1">
+        <bpmn2:sourceRef>esasUtil</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_1</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
       <bpmn2:dataOutputAssociation id="_OUWIlTSREee98887RxVBxA">
         <bpmn2:sourceRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
+        <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>esasUtil</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_OUWIljSREee98887RxVBxA">
         <bpmn2:resourceAssignmentExpression id="_OUWIlzSREee98887RxVBxA">
@@ -193,18 +199,20 @@ return false;</bpmn2:conditionExpression>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
       <bpmn2:ioSpecification id="_OUWvojSREee98887RxVBxA">
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX" drools:dtype="String" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputXItem" name="TaskName"/>
-        <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestInputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputXItem" name="Skippable"/>
+        <bpmn2:dataInput id="DataInput_2" itemSubjectRef="ItemDefinition_6" name="esasUtil"/>
         <bpmn2:dataOutput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="ItemDefinition_4" name="esasRequest"/>
+        <bpmn2:dataOutput id="DataOutput_2" itemSubjectRef="ItemDefinition_6" name="esasUtil"/>
         <bpmn2:inputSet id="_OUWvozSREee98887RxVBxA">
-          <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX</bpmn2:dataInputRefs>
+          <bpmn2:dataInputRefs>DataInput_2</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_OUWvpDSREee98887RxVBxA">
           <bpmn2:dataOutputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>DataOutput_2</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_OUWvpTSREee98887RxVBxA">
@@ -213,10 +221,6 @@ return false;</bpmn2:conditionExpression>
           <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_OUWvpzSREee98887RxVBxA">ManualVerification</bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_OUWvqDSREee98887RxVBxA">_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_OUWvqTSREee98887RxVBxA">
-        <bpmn2:sourceRef>esasRequest</bpmn2:sourceRef>
-        <bpmn2:targetRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_OUWvqjSREee98887RxVBxA">
         <bpmn2:targetRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX</bpmn2:targetRef>
@@ -232,9 +236,17 @@ return false;</bpmn2:conditionExpression>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_OUXWsjSREee98887RxVBxA">_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX</bpmn2:to>
         </bpmn2:assignment>
       </bpmn2:dataInputAssociation>
+      <bpmn2:dataInputAssociation id="DataInputAssociation_2">
+        <bpmn2:sourceRef>esasUtil</bpmn2:sourceRef>
+        <bpmn2:targetRef>DataInput_2</bpmn2:targetRef>
+      </bpmn2:dataInputAssociation>
       <bpmn2:dataOutputAssociation id="_OUXWszSREee98887RxVBxA">
         <bpmn2:sourceRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_2">
+        <bpmn2:sourceRef>DataOutput_2</bpmn2:sourceRef>
+        <bpmn2:targetRef>esasUtil</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_OUXWtDSREee98887RxVBxA">
         <bpmn2:resourceAssignmentExpression id="_OUXWtTSREee98887RxVBxA">
@@ -439,13 +451,13 @@ return false;</bpmn2:conditionExpression>
       <bpmndi:BPMNEdge id="_OUX9zDSREee98887RxVBxA" bpmnElement="_2A4F8EC4-C6E1-4866-B79E-DDDD68F1DF2F" sourceElement="_OUX9wjSREee98887RxVBxA" targetElement="_OUXWwDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="420.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="_OUX9wzSREee98887RxVBxA" targetElement="BPMNShape_EndEvent_2">
         <di:waypoint xsi:type="dc:Point" x="714.0" y="647.0"/>
         <di:waypoint xsi:type="dc:Point" x="714.0" y="667.0"/>
         <di:waypoint xsi:type="dc:Point" x="713.0" y="687.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_19"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_OUX9wTSREee98887RxVBxA" targetElement="BPMNShape_ExclusiveGateway_1">
         <di:waypoint xsi:type="dc:Point" x="521.0" y="635.0"/>
