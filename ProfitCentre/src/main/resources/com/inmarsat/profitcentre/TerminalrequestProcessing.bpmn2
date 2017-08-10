@@ -451,13 +451,11 @@ return false;</bpmn2:conditionExpression>
       <bpmndi:BPMNEdge id="_OUX9zDSREee98887RxVBxA" bpmnElement="_2A4F8EC4-C6E1-4866-B79E-DDDD68F1DF2F" sourceElement="_OUX9wjSREee98887RxVBxA" targetElement="_OUXWwDSREee98887RxVBxA">
         <di:waypoint xsi:type="dc:Point" x="215.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="215.0" y="420.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_14"/>
-      </bpmndi:BPMNEdge>
+       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_3" bpmnElement="SequenceFlow_3" sourceElement="_OUX9wzSREee98887RxVBxA" targetElement="BPMNShape_EndEvent_2">
         <di:waypoint xsi:type="dc:Point" x="714.0" y="647.0"/>
         <di:waypoint xsi:type="dc:Point" x="714.0" y="667.0"/>
         <di:waypoint xsi:type="dc:Point" x="713.0" y="687.0"/>
-        <bpmndi:BPMNLabel id="BPMNLabel_19"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_2" bpmnElement="SequenceFlow_2" sourceElement="_OUX9wTSREee98887RxVBxA" targetElement="BPMNShape_ExclusiveGateway_1">
         <di:waypoint xsi:type="dc:Point" x="521.0" y="635.0"/>
