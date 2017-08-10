@@ -29,7 +29,7 @@ end
 
 
 
-rule "Rule 1 for sales region code DP id 1020"
+rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 1020"
 ruleflow-group "profitCentre"
 	when 
 		$so : ServiceOrder( 
@@ -66,7 +66,7 @@ ruleflow-group "profitCentre"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 1 for DP id 3033"
+rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 3033"
 ruleflow-group "profitCentre"
 	when 
 			$so : ServiceOrder( satisfiedRuleName == null, 
@@ -96,7 +96,7 @@ ruleflow-group "profitCentre"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 3 for RatePlan"
+rule "Rule 3 - Adding a bespoke rate plan as part of activation service order"
 	ruleflow-group "profitCentre"
 	when 
 			$util:ServiceOrderUtil(
@@ -133,7 +133,7 @@ rule "Rule 3 for RatePlan"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 4 for customer service provider"
+rule "Rule 4 - Activation Service order belonging to specific Govt. service providers and industry code"
 	ruleflow-group "profitCentre"
 	when 
 		    $util : ServiceOrderUtil(
@@ -170,7 +170,7 @@ rule "Rule 4 for customer service provider"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 5 US for FB product"
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - USA"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -204,7 +204,7 @@ rule "Rule 5 US for FB product"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 5 Not US for FB product"
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services-Non USA"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -238,7 +238,7 @@ rule "Rule 5 Not US for FB product"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 6 US for SB product"
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - USA"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -272,7 +272,7 @@ rule "Rule 6 US for SB product"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 6 Not US for SB product"
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services-Non USA"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -306,7 +306,7 @@ rule "Rule 6 Not US for SB product"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 7"
+rule "Rule 7 - Activation Service Order having industry codes for Aviation and product is Swift Broadband (SB)"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -338,7 +338,7 @@ rule "Rule 7"
 		System.out.println( "manual validation: " + $so.isManualValidationRequired() );
 end
 
-rule "Rule 8"
+rule "Rule 8 - Activation Service Order having industry codes for respective business units"
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
