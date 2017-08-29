@@ -1,18 +1,19 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
+	<!--<modelVersion>4.0.0</modelVersion> <groupId>com.inmarsat.bpm.finance</groupId> 
+		<artifactId>accounting-profit-centre-rules</artifactId> <version>1.0.0-SNAPSHOT</version> 
+		<name>BPM - Finance - Accounting - Profit Centre Rules</name> -->
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>com.inmarsat.bpm.finance</groupId>
-	<artifactId>accounting-profit-centre-rules</artifactId>
-	<version>1.0.0-SNAPSHOT</version>
-	<name>BPM - Finance - Accounting - Profit Centre Rules</name>
+	<groupId>com.inmarsat.profitcentre</groupId>
+	<artifactId>ProfitCentre</artifactId>
+	<version>1.0</version>
+	<packaging>kjar</packaging>
+	<name>ProfitCentre</name>
 	<description></description>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		<camel.version>2.18.0</camel.version>
-		<fabric8.version>2.2.176</fabric8.version>
-		<fuse.version>6.2.1.redhat-084</fuse.version>
-		<cucumber.version>1.2.5</cucumber.version>
+
 	</properties>
 
 	<!-- DO NOT REMOVE: Required for usage of Inmarsat Nexus Repositories. -->
@@ -44,161 +45,61 @@
 		</pluginRepository>
 	</pluginRepositories>
 
-	<dependencyManagement>
-		<dependencies>
-			<!-- Required for Specifying Camel Versions -->
-			<dependency>
-				<groupId>org.apache.camel</groupId>
-				<artifactId>camel-parent</artifactId>
-				<version>${camel.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- Required for specifying fabric8 Versions -->
-			<dependency>
-				<groupId>io.fabric8</groupId>
-				<artifactId>fabric8-project-bom-with-platform-deps</artifactId>
-				<version>${fabric8.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-			<!-- Required for specifying fuse Versions -->
-			<dependency>
-				<groupId>org.jboss.fuse.bom</groupId>
-				<artifactId>jboss-fuse-parent</artifactId>
-				<version>${fuse.version}</version>
-				<type>pom</type>
-				<scope>import</scope>
-			</dependency>
-		</dependencies>
-	</dependencyManagement>
+	<!-- <dependencyManagement> <dependencies> <dependency> <groupId>com.sun.jersey</groupId> 
+		<artifactId>jersey-client</artifactId> <version>1.8</version> </dependency> 
+		<dependency> <groupId>org.codehaus.jackson</groupId> <artifactId>jackson-mapper-asl</artifactId> 
+		<version>1.9.12</version> </dependency> </dependencies> </dependencyManagement> 
+		</dependencies> -->
 
 	<dependencies>
-
 		<dependency>
-			<groupId>commons-logging</groupId>
-			<artifactId>commons-logging</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-core</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-jsonpath</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-jasypt</artifactId>
-		</dependency>
-
-		<!-- camel spring for DI, IOC and bootstrapping camel -->
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-spring</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-test-spring</artifactId>
-			<scope>test</scope>
-		</dependency>
-
-		<!-- camel jms and activemq -->
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-jms</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.activemq</groupId>
-			<artifactId>activemq-camel</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.camel</groupId>
-			<artifactId>camel-stream</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>org.apache.kafka</groupId>
-			<artifactId>kafka-clients</artifactId>
-		</dependency>
-
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-core</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-		</dependency>
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-annotations</artifactId>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.slf4j</groupId>
-			<artifactId>slf4j-log4j12</artifactId>
+			<artifactId>slf4j-api</artifactId>
+			<version>1.7.25</version>
+		</dependency>
+		<dependency>
+			<groupId>org.codehaus.jackson</groupId>
+			<artifactId>jackson-mapper-asl</artifactId>
+			<version>1.9.12</version>
+		</dependency>
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-jaxrs</artifactId>
+			<version>2.3.10.Final</version>
+			<scope>provided</scope>
 		</dependency>
 		<dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
+			<version>1.2.14</version>
+
 		</dependency>
 
-		<!-- testing -->
+
 		<dependency>
-			<groupId>junit</groupId>
-			<artifactId>junit</artifactId>
+			<groupId>commons-logging</groupId>
+			<artifactId>commons-logging</artifactId>
+			<version>1.1.1</version>
 			<scope>test</scope>
 		</dependency>
+
+
 		<dependency>
-			<groupId>org.jboss.arquillian.junit</groupId>
-			<artifactId>arquillian-junit-container</artifactId>
-			<scope>test</scope>
+			<groupId>javax.ws.rs</groupId>
+			<artifactId>javax.ws.rs-api</artifactId>
+			<version>2.0</version>
 		</dependency>
 		<dependency>
-			<groupId>io.fabric8</groupId>
-			<artifactId>fabric8-arquillian</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.jboss.shrinkwrap.resolver</groupId>
-			<artifactId>shrinkwrap-resolver-impl-maven</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>org.codehaus.plexus</groupId>
-			<artifactId>plexus-utils</artifactId>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-core</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-java</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-junit</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
-		</dependency>
-		<dependency>
-			<groupId>info.cukes</groupId>
-			<artifactId>cucumber-spring</artifactId>
-			<version>${cucumber.version}</version>
-			<scope>test</scope>
+			<groupId>org.jbpm</groupId>
+			<artifactId>jbpm-test</artifactId>
+			<version>6.5.0.Final</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>
@@ -233,22 +134,11 @@
 			<!-- DO NOT REMOVE: Required for packaging the app and dependencies in 
 				a zip. The automated deployment process will look for this format on nexus 
 				when building the image. -->
-			<plugin>
-				<groupId>io.fabric8</groupId>
-				<artifactId>hawt-app-maven-plugin</artifactId>
-				<version>${fabric8.version}</version>
-				<executions>
-					<execution>
-						<id>hawt-app</id>
-						<goals>
-							<goal>build</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<javaMainClass>org.apache.camel.spring.Main</javaMainClass>
-				</configuration>
-			</plugin>
+			<!--<plugin> <groupId>io.fabric8</groupId> <artifactId>hawt-app-maven-plugin</artifactId> 
+				<version>${fabric8.version}</version> <executions> <execution> <id>hawt-app</id> 
+				<goals> <goal>build</goal> </goals> </execution> </executions> <configuration> 
+				<javaMainClass>org.apache.camel.spring.Main</javaMainClass> </configuration> 
+				</plugin> -->
 
 			<!-- Required for Unit Testing -->
 			<plugin>
@@ -268,15 +158,15 @@
 			</plugin>
 
 			<!-- allows the route to be ran via 'mvn exec:java' -->
+			<!--<plugin> <groupId>org.codehaus.mojo</groupId> <artifactId>exec-maven-plugin</artifactId> 
+				<version>1.4.0</version> <configuration> <mainClass>org.apache.camel.spring.Main</mainClass> 
+				</configuration> </plugin> -->
 			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>exec-maven-plugin</artifactId>
-				<version>1.4.0</version>
-				<configuration>
-					<mainClass>org.apache.camel.spring.Main</mainClass>
-				</configuration>
+				<groupId>org.kie</groupId>
+				<artifactId>kie-maven-plugin</artifactId>
+				<version>6.5.0.Final</version>
+				<extensions>true</extensions>
 			</plugin>
-
 			<!-- DO NOT REMOVE: Required to create the kubernetes.zip file, containing 
 				the deployment artifacts (kube yaml files). -->
 			<plugin>

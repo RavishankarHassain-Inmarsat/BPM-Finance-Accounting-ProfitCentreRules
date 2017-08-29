@@ -525,7 +525,7 @@
                 "displayName": "Context Directory",
                 "description": "Path within Git project to build; empty for root project directory.",
                 "name": "CONTEXT_DIR",
-                "value": "processserver/library",
+                "value": "",
                 "required": false
             },
             {

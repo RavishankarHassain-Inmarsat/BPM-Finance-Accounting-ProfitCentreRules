@@ -1,0 +1,203 @@
+package com.inmarsat.profitcentre;
+
+import com.inmarsat.profitcentre.ESASRequest;
+import com.inmarsat.profitcentre.ESASUtil;
+import org.jbpm.workflow.instance.WorkflowProcessInstance;
+//global java.util.Map compIdBu;
+//global java.util.Map esasProdIndBuMap;
+//global java.util.Map esasProdBuCdBuMap;
+//global java.util.Map esasCntryOfRegBuMap;
+//global java.util.Map proftCt;
+//global java.util.Map ruleConfigMap;
+
+
+rule "Rule 1 - Terminal belonging to specific company ids in CAST- Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        compIdBUMap != null, compIdBu : compIdBUMap,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 1 - Terminal belonging to specific company ids in CAST- Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null,
+			   profitCentre == null, dpId != null, companyId != null, 
+			   compIdBu.get(companyId) != null, 
+			   proftCt.get(compIdBu.get(companyId)+","+dpId) != null)
+	
+	then
+		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 2 - Terminal belonging to Government industry code USA-Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null,  ruleConfigMap.get("Rule 2 - Terminal belonging to Government industry code USA-Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, catCode != null, businessUnit != null , countryOfRegistration != null, countryOfRegistration == "USA",
+			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration,
+			   esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName) != null, 
+			   proftCt.get(esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName)+","+dpId) != null)
+		
+	then
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 2 - Terminal belonging to Government industry code Non-USA-Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 2 - Terminal belonging to Government industry code Non-USA-Classic Aero")=="true")
+		
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, catCode != null, businessUnit != null , countryOfRegistration != null, 
+			   countryOfRegistration != "USA", eIndCd : catCode, eBuName : businessUnit,
+			   esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName) != null, 
+			   proftCt.get(esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName)+","+dpId) != null)
+		
+	then
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 3 - Segmentation for Classic Aero Terminals- Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasProdIndBu != null, esasProdIndBuMap : esasProdIndBu,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 3 - Segmentation for Classic Aero Terminals- Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, productCode != null, catCode != null,
+			   esasProdIndBuMap.get(productCode+","+catCode) != null, 
+			   proftCt.get(esasProdIndBuMap.get(productCode+","+catCode)+","+dpId) != null)
+			   
+	then
+		$erq.setBusinessUnitPC((String)esasProdIndBuMap.get($erq.getProductCode()+","+$erq.getCatCode()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 4 - Terminal assigned to a product and old industry code - Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasProdBuCdBu != null, esasProdBuCdBuMap : esasProdBuCdBu,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 4 - Terminal assigned to a product and old industry code - Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId != null, productCode != null, businessUnit != null,
+			   esasProdBuCdBuMap.get(productCode+","+businessUnit) != null, 
+			   proftCt.get(esasProdBuCdBuMap.get(productCode+","+businessUnit)+","+dpId) != null)
+	
+	then
+		$erq.setBusinessUnitPC((String)esasProdBuCdBuMap.get($erq.getProductCode()+","+$erq.getBusinessUnit()));
+		$erq.setProfitCentre((String)proftCt.get($erq.getBusinessUnitPC()+","+$erq.getDpId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 1 - Terminal belonging to specific company ids in CAST- Non-Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        compIdBUMap != null, compIdBu : compIdBUMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 1 - Terminal belonging to specific company ids in CAST- Non-Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null,
+			   profitCentre == null, dpId == null, companyId != null, 
+			   compIdBu.get(companyId) != null)
+	
+	then
+		$erq.setBusinessUnitPC((String)compIdBu.get($erq.getCompanyId()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 2 - Terminal belonging to Government industry code USA-Non Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 2 - Terminal belonging to Government industry code USA-Non Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, catCode != null, businessUnit != null , countryOfRegistration != null, countryOfRegistration == "USA",
+			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration,
+			   esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName) != null) 
+			   
+	then
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get(country+","+eIndCd+","+eBuName));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 2 - Terminal belonging to Government industry code Non-USA-Non -Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasCntryOfRegBu != null, esasCntryOfRegBuMap : esasCntryOfRegBu,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 2 - Terminal belonging to Government industry code Non-USA-Non -Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, catCode != null, businessUnit != null , countryOfRegistration != null, countryOfRegistration != "USA",
+			   eIndCd : catCode, eBuName : businessUnit, country : countryOfRegistration,
+			   esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName) != null) 
+	
+	then
+		$erq.setBusinessUnitPC((String) esasCntryOfRegBuMap.get("Non-USA"+","+eIndCd+","+eBuName));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule "Rule 3 - Segmentation for Classic Aero Terminals- Non Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasProdIndBu != null, esasProdIndBuMap : esasProdIndBu,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 3 - Segmentation for Classic Aero Terminals- Non Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, productCode != null, catCode != null,
+			   esasProdIndBuMap.get(productCode+","+catCode) != null)
+		
+	then
+		$erq.setBusinessUnitPC((String)esasProdIndBuMap.get($erq.getProductCode()+","+$erq.getCatCode()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
+rule  "Rule 4 - Terminal assigned to a product and old industry code - Non - Classic Aero"
+ruleflow-group "derive_profitcentre"
+	when 
+		$util : ESASUtil(
+		        esasProdBuCdBu != null, esasProdBuCdBuMap : esasProdBuCdBu,
+		        proftCtMap != null, proftCt : proftCtMap,
+		        ruleConfigMap != null, ruleConfigMap.get("Rule 4 - Terminal assigned to a product and old industry code - Non - Classic Aero")=="true")
+		        
+		$erq : ESASRequest( satisfiedRuleName == null, profitCentre == null, 
+			   dpId == null, productCode != null, businessUnit != null,
+			   esasProdBuCdBuMap.get(productCode+","+businessUnit) != null) 
+
+	then
+		$erq.setBusinessUnitPC((String)esasProdBuCdBuMap.get($erq.getProductCode()+","+$erq.getBusinessUnit()));
+		$erq.setSatisfiedRuleName(drools.getRule().getName());
+		update($erq);
+end
+
