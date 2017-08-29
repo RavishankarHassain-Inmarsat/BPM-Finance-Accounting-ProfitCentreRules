@@ -1,0 +1,103 @@
+
+<form id="1896852796">
+<property name="name" value="ManualVerification-taskform.form"/>
+<property name="displayMode" value="default"/>
+<property name="status" value="0"/>
+<field position="0" name="role" type="InputText" id="876823941">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;role (role)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="role"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="1" name="serviceOrder_businessUnit" type="InputText" id="620128542">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;businessUnit (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/businessUnit"/>
+<property name="outputBinding" value="serviceOrder/businessUnit"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="2" name="serviceOrder_countryOfRegistration" type="InputText" id="1869985512">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;countryOfRegistration (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/countryOfRegistration"/>
+<property name="outputBinding" value="serviceOrder/countryOfRegistration"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="3" name="serviceOrder_dpId" type="InputTextInteger" id="1109876007">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;dpId (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/dpId"/>
+<property name="outputBinding" value="serviceOrder/dpId"/>
+<property name="fieldClass" value="java.lang.Integer"/>
+</field>
+<field position="4" name="serviceOrder_id" type="InputTextLong" id="2031747020">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;id (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/id"/>
+<property name="outputBinding" value="serviceOrder/id"/>
+<property name="fieldClass" value="java.lang.Long"/>
+</field>
+<field position="5" name="serviceOrder_industryCode" type="InputText" id="509876339">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;industryCode (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/industryCode"/>
+<property name="outputBinding" value="serviceOrder/industryCode"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="6" name="serviceOrder_isManualSegmentationRequired" type="CheckBox" id="2026555759">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;isManualSegmentationRequired (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/isManualSegmentationRequired"/>
+<property name="outputBinding" value="serviceOrder/isManualSegmentationRequired"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+</field>
+<field position="7" name="serviceOrder_isManualValidationRequired" type="CheckBox" id="2059469546">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;isManualValidationRequired (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/isManualValidationRequired"/>
+<property name="outputBinding" value="serviceOrder/isManualValidationRequired"/>
+<property name="fieldClass" value="java.lang.Boolean"/>
+</field>
+<field position="8" name="serviceOrder_msisdn" type="InputTextInteger" id="197336389">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;msisdn (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/msisdn"/>
+<property name="outputBinding" value="serviceOrder/msisdn"/>
+<property name="fieldClass" value="java.lang.Integer"/>
+</field>
+<field position="9" name="serviceOrder_profitCenter" type="InputText" id="1723746799">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;profitCenter (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/profitCenter"/>
+<property name="outputBinding" value="serviceOrder/profitCenter"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<field position="10" name="serviceOrder_scapId" type="InputTextInteger" id="1093981830">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;scapId (serviceOrder)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="serviceOrder/scapId"/>
+<property name="outputBinding" value="serviceOrder/scapId"/>
+<property name="fieldClass" value="java.lang.Integer"/>
+</field>
+<field position="11" name="user" type="InputText" id="627549920">
+<property name="fieldRequired" value="false"/>
+<property name="label" value="quot;enquot;,quot;user (user)quot;"/>
+<property name="readonly" value="false"/>
+<property name="inputBinding" value="user"/>
+<property name="fieldClass" value="java.lang.String"/>
+</field>
+<dataHolder inputId="role" name="#BBBBBB" type="basicType" outId="" value="java.lang.String" id="role"/>
+<dataHolder inputId="serviceOrder" name="#9BCAFA" type="dataModelerEntry" outId="serviceOrder" value="com.inmarsat.profitcentre.ServiceOrder" id="serviceOrder"/>
+<dataHolder inputId="user" name="#E9E371" type="basicType" outId="" value="java.lang.String" id="user"/>
+</form>

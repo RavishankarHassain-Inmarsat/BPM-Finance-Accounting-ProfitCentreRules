@@ -1,0 +1,112 @@
+{
+    "kind": "Template",
+    "apiVersion": "v1",
+    "metadata": {
+        "annotations": {
+            "description": "Application template for Red Hat JBoss BPM Suite 6.3 intelligent process server built using S2I.",
+            "iconClass": "icon-jboss"
+        },
+        "name": "${APPLICATION_NAME}-build-template"
+    },
+    "objects": [
+        {
+            "kind": "ImageStream",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "app": "${APPLICATION_NAME}"
+                }
+            }
+        },
+        {
+            "kind": "BuildConfig",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}",
+                "labels": {
+                    "app": "${APPLICATION_NAME}"
+                }
+            },
+            "spec": {
+                "source": {
+                    "type": "Git",
+                    "git": {
+                        "uri": "${SOURCE_REPOSITORY_URL}",
+                        "ref": "${SOURCE_REPOSITORY_REF}"
+                    },
+                    "contextDir": "${CONTEXT_DIR}",
+                    "sourceSecret":  {"name": "githubcreds"}
+                },
+                "strategy": {
+                    "type": "Source",
+                    "sourceStrategy": {
+                        "env": [
+                            {
+                                "name": "KIE_CONTAINER_DEPLOYMENT",
+                                "value": "${KIE_CONTAINER_DEPLOYMENT}"
+                            }
+                        ],
+                        "forcePull": true,
+                        "from": {
+                            "kind": "ImageStreamTag",
+                            "namespace": "${IMAGE_STREAM_NAMESPACE}",
+                            "name": "jboss-processserver63-openshift:1.3"
+                        }
+                    }
+                },
+                "output": {
+                    "to": {
+                        "kind": "ImageStreamTag",
+                        "name": "${APPLICATION_NAME}:latest"
+                    }
+                },
+                "triggers": []
+            }
+        }
+    ],
+     "parameters": [
+            {
+                "displayName": "KIE Container Deployment",
+                "description": "The KIE Container deployment configuration in format: containerId=groupId:artifactId:version|c2=g2:a2:v2",
+                "name": "KIE_CONTAINER_DEPLOYMENT",
+                "value": "processserver-library=org.openshift.quickstarts:processserver-library:1.3.0.Final",
+                "required": false
+            },
+            {
+                "displayName": "Application Name",
+                "description": "The name for the application.",
+                "name": "APPLICATION_NAME",
+                "value": "profit-centre",
+                "required": true
+            },
+            {
+                "displayName": "Git Repository URL",
+                "description": "Git source URI for application",
+                "name": "SOURCE_REPOSITORY_URL",
+                "value": "https://github.com/Inmarsat-itcloudservices/BPM-Finance-Accounting-ProfitCentreRules.git",
+                "required": true
+            },
+            {
+                "displayName": "Git Reference",
+                "description": "Git branch/tag reference",
+                "name": "SOURCE_REPOSITORY_REF",
+                "value": "develop",
+                "required": false
+            },
+            {
+                "displayName": "Context Directory",
+                "description": "Path within Git project to build; empty for root project directory.",
+                "name": "CONTEXT_DIR",
+                "value": "",
+                "required": false
+            },
+            {
+                "displayName": "ImageStream Namespace",
+                "description": "Namespace in which the ImageStreams for Red Hat Middleware images are installed. These ImageStreams are normally installed in the openshift namespace. You should only need to modify this if you've installed the ImageStreams in a different namespace/project.",
+                "name": "IMAGE_STREAM_NAMESPACE",
+                "value": "openshift",
+                "required": true
+            }
+        ]
+}
