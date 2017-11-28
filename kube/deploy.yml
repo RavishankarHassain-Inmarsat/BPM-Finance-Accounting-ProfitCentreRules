@@ -9,7 +9,7 @@
         "name": "${APPLICATION_NAME}-deploy-template"
     },
     "objects": [
-            {
+        {
             "kind": "Service",
             "apiVersion": "v1",
             "spec": {
@@ -58,6 +58,31 @@
             }
         },
         {
+            "kind": "Service",
+            "apiVersion": "v1",
+            "spec": {
+                "ports": [
+                    {
+                        "name": "mysql",
+                        "nodePort": 0,
+                        "port": 3306,
+                        "protocol": "TCP",
+                        "targetPort": 3306
+                    }
+                ],
+                "selector": {}
+            },
+            "metadata": {
+                "name": "${APPLICATION_NAME}-mysql",
+                "labels": {
+                    "application": "${APPLICATION_NAME}"
+                },
+                "annotations": {
+                    "description": "The database server"
+                }
+            }
+        },
+        {
             "kind": "Route",
             "apiVersion": "v1",
             "id": "${APPLICATION_NAME}-http",
@@ -99,6 +124,19 @@
                     "termination": "passthrough"
                 }
             }
+        },
+        {
+            "kind": "Endpoints",
+            "apiVersion": "v1",
+            "metadata": {
+                "name": "${APPLICATION_NAME}-mysql"
+            },
+            "subsets": [
+                {
+                    "addresses": [{ "ip":"10.214.28.25" }, { "ip":"10.214.28.32" } , { "ip":"10.214.28.34" }],
+                    "ports": [{ "port": 3306, "protocol" : "TCP" , "name" : "mysql"}]
+                }
+            ]
         },
         {
             "kind": "DeploymentConfig",
