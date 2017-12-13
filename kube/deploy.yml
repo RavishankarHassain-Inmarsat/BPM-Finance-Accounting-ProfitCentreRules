@@ -6,7 +6,7 @@
             "description": "Application template for Red Hat JBoss BPM Suite 6.3 intelligent process server built using S2I.",
             "iconClass": "icon-jboss"
         },
-        "name": "${APPLICATION_NAME}-deploy-template"
+        "name": "${APP_NAME}-deploy-template"
     },
     "objects": [
         {
@@ -20,13 +20,13 @@
                     }
                 ],
                 "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 }
             },
             "metadata": {
-                "name": "${APPLICATION_NAME}",
+                "name": "${SERVICE_NAME}",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "annotations": {
                     "description": "The web server's http port."
@@ -44,13 +44,13 @@
                     }
                 ],
                 "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 }
             },
             "metadata": {
-                "name": "secure-${APPLICATION_NAME}",
+                "name": "secure-${SERVICE_NAME}",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "annotations": {
                     "description": "The web server's https port."
@@ -73,9 +73,9 @@
                 "selector": {}
             },
             "metadata": {
-                "name": "${APPLICATION_NAME}-mysql",
+                "name": "${SERVICE_NAME}-mysql",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "annotations": {
                     "description": "The database server"
@@ -85,11 +85,11 @@
         {
             "kind": "Route",
             "apiVersion": "v1",
-            "id": "${APPLICATION_NAME}-http",
+            "id": "${APP_NAME}-http",
             "metadata": {
-                "name": "${APPLICATION_NAME}",
+                "name": "${APP_NAME}",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "annotations": {
                     "description": "Route for application's http service."
@@ -98,18 +98,18 @@
             "spec": {
                 "host": "${HOSTNAME_HTTP}",
                 "to": {
-                    "name": "${APPLICATION_NAME}"
+                    "name": "${SERVICE_NAME}"
                 }
             }
         },
         {
             "kind": "Route",
             "apiVersion": "v1",
-            "id": "${APPLICATION_NAME}-https",
+            "id": "${APP_NAME}-https",
             "metadata": {
-                "name": "secure-${APPLICATION_NAME}",
+                "name": "secure-${APP_NAME}",
                 "labels": {
-                    "application": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "annotations": {
                     "description": "Route for application's https service."
@@ -118,7 +118,7 @@
             "spec": {
                 "host": "${HOSTNAME_HTTPS}",
                 "to": {
-                    "name": "secure-${APPLICATION_NAME}"
+                    "name": "secure-${SERVICE_NAME}"
                 },
                 "tls": {
                     "termination": "passthrough"
@@ -129,11 +129,14 @@
             "kind": "Endpoints",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APPLICATION_NAME}-mysql"
+                "name": "${SERVICE_NAME}-mysql",
+                "labels": {
+                    "app": "${APP_NAME}"
+                }
             },
             "subsets": [
                 {
-                    "addresses": [{ "ip":"10.214.28.25" }, { "ip":"10.214.28.32" } , { "ip":"10.214.28.34" }],
+                    "addresses": [{ "ip":"${MYSQL_NODE_1}" }, { "ip":"${MYSQL_NODE_2}" } , { "ip":"${MYSQL_NODE_3}" }],
                     "ports": [{ "port": 3306, "protocol" : "TCP" , "name" : "mysql"}]
                 }
             ]
@@ -142,9 +145,9 @@
             "kind": "DeploymentConfig",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APPLICATION_NAME}",
+                "name": "${APP_NAME}",
                 "labels": {
-                    "app": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 }
             },
             "spec": {
@@ -154,14 +157,13 @@
                 "triggers": [],
                 "replicas": 1,
                 "selector": {
-                    "deploymentConfig": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 },
                 "template": {
                     "metadata": {
-                        "name": "${APPLICATION_NAME}",
+                        "name": "${APP_NAME}",
                         "labels": {
-                            "deploymentConfig": "${APPLICATION_NAME}",
-                            "app": "${APPLICATION_NAME}"
+                            "app": "${APP_NAME}"
                         }
                     },
                     "spec": {
@@ -169,8 +171,8 @@
                         "terminationGracePeriodSeconds": 60,
                         "containers": [
                             {
-                                "name": "${APPLICATION_NAME}",
-                                "image": "${DOCKER_REG}/${SOURCE_NAMESPACE}/${APPLICATION_NAME}:${IMAGE_TAG}",
+                                "name": "${APP_NAME}",
+                                "image": "${DOCKER_REG}/${SOURCE_NAMESPACE}/${APP_NAME}:${IMAGE_TAG}",
                                 "imagePullPolicy": "Always",
                                 "volumeMounts": [
                                     {
@@ -179,13 +181,13 @@
                                         "readOnly": true
                                     },
                                      {
+                                         "name": "${APP_NAME}-configmap",
                                          "mountPath": "/etc/configmap",
-                                         "name": "${APPLICATION_NAME}-configmap",
                                          "readOnly":true
                                      },
                                      {
+                                         "name": "${APP_NAME}-secret",
                                          "mountPath": "/etc/secret",
-                                         "name": "${APPLICATION_NAME}-secret",
                                          "readOnly":true
                                      }
                                 ],
@@ -364,15 +366,15 @@
                                 }
                             },
                             {
-                                "name": "${APPLICATION_NAME}-secret",
+                                "name": "${APP_NAME}-secret",
                                 "secret": {
-                                    "secretName": "${APPLICATION_NAME}"
+                                    "secretName": "${APP_NAME}"
                                 }
                             },
                             {
-                                "name": "${APPLICATION_NAME}-configmap",
+                                "name": "${APP_NAME}-configmap",
                                 "configMap": {
-                                    "name": "${APPLICATION_NAME}",
+                                    "name": "${APP_NAME}",
                                      "items": []
                                 }
                             }
@@ -386,27 +388,37 @@
             {
                 "displayName": "Application Name",
                 "description": "The name for the application.",
-                "name": "APPLICATION_NAME",
-                "value": "profit-centre",
+                "name": "APP_NAME",
+                "value": "accounting-profit-centre-rules",
+                "required": true
+            },
+            {
+                "displayName": "Service Name",
+                "description": "The name for the services.",
+                "name": "SERVICE_NAME",
+                "value": "accounting-profit-centre-rules",
                 "required": true
             },
             {
                 "displayName": "Source Namespace",
                 "description": "The namespace where the image was built.",
                 "name": "SOURCE_NAMESPACE",
-                "value": "finance-dev",
+                "value": "jenkins-builds",
                 "required": true
             },
             {
                 "displayName": "Image Tag",
                 "description": "Tag to identify the image version to deploy.",
                 "name": "IMAGE_TAG",
-                "value": "sit",
+                "value": "",
                 "required": true
             },
             {
+                "displayName": "Docker Registry",
+                "description": "Address and port for the internal Docker registry.",
                 "name": "DOCKER_REG",
-                "value": "sit"
+                "value": ""
+                "required": true
             },
             {
                 "displayName": "Custom http Route Hostname",
@@ -618,6 +630,27 @@
                 "description": "Size of persistent storage for database volume.",
                 "name": "VOLUME_CAPACITY",
                 "value": "512Mi",
+                "required": true
+            },
+            {
+                "displayName": "MySQL Node 1",
+                "description": "Size of persistent storage for database volume.",
+                "name": "MYSQL_NODE_1",
+                "value": "",
+                "required": true
+            },
+            {
+                "displayName": "MySQL Node 2",
+                "description": "Size of persistent storage for database volume.",
+                "name": "MYSQL_NODE_2",
+                "value": "",
+                "required": true
+            },
+            {
+                "displayName": "MySQL Node 3",
+                "description": "Size of persistent storage for database volume.",
+                "name": "MYSQL_NODE_3",
+                "value": "",
                 "required": true
             }
         ]
