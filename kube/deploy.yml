@@ -417,7 +417,7 @@
                 "displayName": "Docker Registry",
                 "description": "Address and port for the internal Docker registry.",
                 "name": "DOCKER_REG",
-                "value": ""
+                "value": "",
                 "required": true
             },
             {
