@@ -6,16 +6,16 @@
             "description": "Application template for Red Hat JBoss BPM Suite 6.3 intelligent process server built using S2I.",
             "iconClass": "icon-jboss"
         },
-        "name": "${APPLICATION_NAME}-build-template"
+        "name": "${APP_NAME}-build-template"
     },
     "objects": [
         {
             "kind": "ImageStream",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APPLICATION_NAME}",
+                "name": "${APP_NAME}",
                 "labels": {
-                    "app": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 }
             }
         },
@@ -23,9 +23,9 @@
             "kind": "BuildConfig",
             "apiVersion": "v1",
             "metadata": {
-                "name": "${APPLICATION_NAME}",
+                "name": "${APP_NAME}",
                 "labels": {
-                    "app": "${APPLICATION_NAME}"
+                    "app": "${APP_NAME}"
                 }
             },
             "spec": {
@@ -58,7 +58,7 @@
                 "output": {
                     "to": {
                         "kind": "ImageStreamTag",
-                        "name": "${APPLICATION_NAME}:latest"
+                        "name": "${APP_NAME}:latest"
                     }
                 },
                 "triggers": []
@@ -76,8 +76,8 @@
             {
                 "displayName": "Application Name",
                 "description": "The name for the application.",
-                "name": "APPLICATION_NAME",
-                "value": "profit-centre",
+                "name": "APP_NAME",
+                "value": "accounting-profit-centre-rules",
                 "required": true
             },
             {
