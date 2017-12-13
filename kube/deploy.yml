@@ -554,7 +554,7 @@
                 "displayName": "Server Keystore Secret Name",
                 "description": "The name of the secret containing the keystore file",
                 "name": "HTTPS_SECRET",
-                "value": "app-secret",
+                "value": "processserver-app-secret",
                 "required": false
             },
             {
