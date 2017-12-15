@@ -136,7 +136,7 @@
             },
             "subsets": [
                 {
-                    "addresses": [{ "ip":"10.214.28.25" }, { "ip":"10.214.28.32" } , { "ip":"10.214.28.34" }],
+                     "addresses": [{ "ip":"${MYSQL_NODE_1}" }, { "ip":"${MYSQL_NODE_2}" } , { "ip":"${MYSQL_NODE_3}" }],
                     "ports": [{ "port": 3306, "protocol" : "TCP" , "name" : "mysql"}]
                 }
             ]
