@@ -136,7 +136,7 @@
             },
             "subsets": [
                 {
-                    "addresses": [{ "ip":"${MYSQL_NODE_1}" }, { "ip":"${MYSQL_NODE_2}" } , { "ip":"${MYSQL_NODE_3}" }],
+                     "addresses": [{ "ip":"${MYSQL_NODE_1}" }, { "ip":"${MYSQL_NODE_2}" } , { "ip":"${MYSQL_NODE_3}" }],
                     "ports": [{ "port": 3306, "protocol" : "TCP" , "name" : "mysql"}]
                 }
             ]
@@ -257,11 +257,11 @@
                                     },
                                     {
                                         "name": "DB_SERVICE_PREFIX_MAPPING",
-                                        "value": "profit-centre-mysql=DB,profit-centre-mysql=QUARTZ"
+                                        "value": "accounting-profit-centre-rules-mysql=DB,accounting-profit-centre-rules-mysql=QUARTZ"
                                     },
                                     {
                                         "name": "TX_DATABASE_PREFIX_MAPPING",
-                                        "value": "profit-centre-mysql=DB"
+                                        "value": "accounting-profit-centre-rules-mysql=DB"
                                     },
                                     {
                                         "name": "DB_JNDI",
