@@ -9,73 +9,76 @@ import java.util.Date;
 public class ServiceOrder implements java.io.Serializable
 {
 	private static final long serialVersionUID = 1L;
-	 private Long id;
-     private String msisdn;
-     private String industryCode;
-     private String profitCenter;
-     private String requestId;
-     private String productCode;
-     private String satisfiedRuleName;
-     private boolean isManualValidationRequired;
-     private boolean isManualSegmentationRequired;
-     private String salesRegion;
-     private String salesRegionCode;
-     private String dpName;
-     private String billingProfileCode;
-     private String arAccountCode;
-     private String prevBusinessUnit;
-     private String prevCommericialMarket;
-     private String prevRuleId;
-     private String grpPkgInstance;
-     private String wholeSaleCust;
-     private String castOrgName;
-     private String castVerticalMarket;
-     private String createdBy;
-     private String updatedBy;
-     private Date createdTime;
-     private Date updatedTime;
-     private String dpId;
-     private String businessUnit;
-     private String commVerticalMarket;
-     private String scapId;
-     private String product;
-     private String subscriber;
-     private String ratePlan;
-     private String verticalMarket;
-     private String simcardId;
-  
-     private String countryName;
-     private String marketSector;
-     private String imoNumber;
-     private String vesselName;
-     private String typeOfVessel;
-     private String aircraftModel;
-     private String aeroType;
-     private String tailNo;
-     private String callSign;
-     private String effectiveDate;
-     private String mmsi;
-     private String idType;
-     private String organisaionId;
-     private String organisationName;
-     private String verticalMarketKey;
-     private String customerKey;
-     private String customerName;
-     private String companyId;
-     private String companyName;
-     private String hardwareId;
-     private String imsiNumber;
-     private String corporateName;
-     private String prevCommCustomer;
-     private String groupPackageInstanceId;
-     private String vesselType;
-     private String aircraftClass; 
-     private String aircraftManufacturer;
-     private String tailNumber;
-     private String countryOfRegistration;
-     private String status;
-     private String ratePlanId;
-     private boolean ratePlanChangeInd;
+	private Long id;
+	private String msisdn;
+	private String industryCode;
+	private String profitCenter;
+	private String requestId;
+	private String productCode;
+	private String satisfiedRuleName;
+	private boolean isManualValidationRequired;
+	private boolean isManualSegmentationRequired;
+	private String salesRegion;
+	private String salesRegionCode;
+	private String dpName;
+	private String billingProfileCode;
+	private String arAccountCode;
+	private String prevBusinessUnit;
+	private String prevCommericialMarket;
+	private String prevRuleId;
+	private String grpPkgInstance;
+	private String wholeSaleCust;
+	private String castOrgName;
+	private String castVerticalMarket;
+	private String createdBy;
+	private String updatedBy;
+	private Date createdTime;
+	private Date updatedTime;
+	private String dpId;
+	private String businessUnit;
+	private String commVerticalMarket;
+	private String scapId;
+	private String product;
+	private String subscriber;
+	private String ratePlan;
+	private String verticalMarket;
+	private String simcardId;
+
+	private String countryName;
+	private String marketSector;
+	private String imoNumber;
+	private String vesselName;
+	private String typeOfVessel;
+	private String aircraftModel;
+	private String aeroType;
+	private String tailNo;
+	private String callSign;
+	private String effectiveDate;
+	private String mmsi;
+	private String idType;
+	private String organisaionId;
+	private String organisationName;
+	private String verticalMarketKey;
+	private String customerKey;
+	private String customerName;
+	private String companyId;
+	private String companyName;
+	private String hardwareId;
+	private String imsiNumber;
+	private String corporateName;
+	private String prevCommCustomer;
+	private String groupPackageInstanceId;
+	private String vesselType;
+	private String aircraftClass; 
+	private String aircraftManufacturer;
+	private String tailNumber;
+	private String countryOfRegistration;
+	private String status;
+	private String ratePlanId;
+	private boolean ratePlanChangeInd;
+	private String suffix;
+	private String salesOrg;
+	private String sourceSyatem;
 	public Long getId() {
 		return id;
 	}
@@ -462,8 +465,8 @@ public class ServiceOrder implements java.io.Serializable
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
-	
+
+
 	public String getRatePlanId() {
 		return ratePlanId;
 	}
@@ -475,6 +478,24 @@ public class ServiceOrder implements java.io.Serializable
 	}
 	public void setRatePlanChangeInd(boolean ratePlanChangeInd) {
 		this.ratePlanChangeInd = ratePlanChangeInd;
+	}
+	public String getSuffix() {
+		return suffix;
+	}
+	public void setSuffix(String suffix) {
+		this.suffix = suffix;
+	}
+	public String getSalesOrg() {
+		return salesOrg;
+	}
+	public void setSalesOrg(String salesOrg) {
+		this.salesOrg = salesOrg;
+	}
+	public String getSourceSyatem() {
+		return sourceSyatem;
+	}
+	public void setSourceSyatem(String sourceSyatem) {
+		this.sourceSyatem = sourceSyatem;
 	}
 	@Override
 	public String toString() {
@@ -502,10 +523,8 @@ public class ServiceOrder implements java.io.Serializable
 				+ ", vesselType=" + vesselType + ", aircraftClass=" + aircraftClass + ", aircraftManufacturer="
 				+ aircraftManufacturer + ", tailNumber=" + tailNumber + ", countryOfRegistration="
 				+ countryOfRegistration + ", status=" + status + ", ratePlanId=" + ratePlanId + ", ratePlanChangeInd="
-				+ ratePlanChangeInd + "]";
+				+ ratePlanChangeInd + ", suffix=" + suffix + ", salesOrg=" + salesOrg + ", sourceSyatem=" + sourceSyatem
+				+ "]";
 	}
-     
-     
-     
-     
+
 }
