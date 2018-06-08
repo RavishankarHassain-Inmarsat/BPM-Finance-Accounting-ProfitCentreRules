@@ -78,7 +78,7 @@ public class ServiceOrder implements java.io.Serializable
 	private boolean ratePlanChangeInd;
 	private String suffix;
 	private String salesOrg;
-	private String sourceSyatem;
+	private String sourceSystem;
 	public Long getId() {
 		return id;
 	}
@@ -491,11 +491,11 @@ public class ServiceOrder implements java.io.Serializable
 	public void setSalesOrg(String salesOrg) {
 		this.salesOrg = salesOrg;
 	}
-	public String getSourceSyatem() {
-		return sourceSyatem;
+	public String getSourceSystem() {
+		return sourceSystem;
 	}
-	public void setSourceSyatem(String sourceSyatem) {
-		this.sourceSyatem = sourceSyatem;
+	public void setSourceSystem(String sourceSystem) {
+		this.sourceSystem = sourceSystem;
 	}
 	@Override
 	public String toString() {
@@ -523,8 +523,8 @@ public class ServiceOrder implements java.io.Serializable
 				+ ", vesselType=" + vesselType + ", aircraftClass=" + aircraftClass + ", aircraftManufacturer="
 				+ aircraftManufacturer + ", tailNumber=" + tailNumber + ", countryOfRegistration="
 				+ countryOfRegistration + ", status=" + status + ", ratePlanId=" + ratePlanId + ", ratePlanChangeInd="
-				+ ratePlanChangeInd + ", suffix=" + suffix + ", salesOrg=" + salesOrg + ", sourceSyatem=" + sourceSyatem
+				+ ratePlanChangeInd + ", suffix=" + suffix + ", salesOrg=" + salesOrg + ", sourceSystem=" + sourceSystem
 				+ "]";
 	}
-
+	
 }

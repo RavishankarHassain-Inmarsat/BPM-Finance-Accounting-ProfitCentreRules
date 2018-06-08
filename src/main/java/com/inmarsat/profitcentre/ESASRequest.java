@@ -8,7 +8,7 @@ import java.util.Date;
 
 public class ESASRequest implements java.io.Serializable
 {
-	
+
 	private static final long serialVersionUID = 1L;
 	private Integer id;
 	private String hardwareId;
@@ -56,13 +56,14 @@ public class ESASRequest implements java.io.Serializable
 	private String dpId;
 	private String satisfiedRuleName;
 	private String businessUnitPC;
-	 private String createdBy;
-     private String updatedBy;
-     private Date createdTime;
-     private Date updatedTime;
-     private String terminalType;
-     private String status;
-	
+	private String createdBy;
+	private String updatedBy;
+	private Date createdTime;
+	private Date updatedTime;
+	private String terminalType;
+	private String status;
+	private String sourceSystem;
+
 	public Integer getId() {
 		return id;
 	}
@@ -376,7 +377,12 @@ public class ESASRequest implements java.io.Serializable
 	public void setStatus(String status) {
 		this.status = status;
 	}
-	
+	public String getSourceSystem() {
+		return sourceSystem;
+	}
+	public void setSourceSystem(String sourceSystem) {
+		this.sourceSystem = sourceSystem;
+	}
 	@Override
 	public String toString() {
 		return "ESASRequest [id=" + id + ", hardwareId=" + hardwareId + ", imnId=" + imnId + ", terminalId="
@@ -389,14 +395,13 @@ public class ESASRequest implements java.io.Serializable
 				+ ", subscriber=" + subscriber + ", ratePlan=" + ratePlan + ", verticalMarket=" + verticalMarket
 				+ ", simcardId=" + simcardId + ", countryName=" + countryName + ", marketSector=" + marketSector
 				+ ", imoNumber=" + imoNumber + ", typeOfVessel=" + typeOfVessel + ", aircraftModel=" + aircraftModel
-				+ ", aeroType=" + aeroType + ", effectiveDate=" + effectiveDate + ", terminalType=" + terminalType
+				+ ", aeroType=" + aeroType + ", effectiveDate=" + effectiveDate + ", idType=" + idType
 				+ ", organisaionId=" + organisaionId + ", organisationName=" + organisationName + ", verticalMarketKey="
 				+ verticalMarketKey + ", customerKey=" + customerKey + ", customerName=" + customerName
 				+ ", companyName=" + companyName + ", companyId=" + companyId + ", productCode=" + productCode
 				+ ", dpId=" + dpId + ", satisfiedRuleName=" + satisfiedRuleName + ", businessUnitPC=" + businessUnitPC
 				+ ", createdBy=" + createdBy + ", updatedBy=" + updatedBy + ", createdTime=" + createdTime
-				+ ", updatedTime=" + updatedTime + ", status=" + status + "]";
+				+ ", updatedTime=" + updatedTime + ", terminalType=" + terminalType + ", status=" + status
+				+ ", sourceSystem=" + sourceSystem + "]";
 	}
-
-
 }
