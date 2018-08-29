@@ -24,6 +24,18 @@
   <bpmn2:itemDefinition id="__DCD6C405-4659-4E5B-9147-450B782421CF_esasRequestInputXItem" isCollection="false" structureRef="java.lang.Object"/>
   <bpmn2:itemDefinition id="__DCD6C405-4659-4E5B-9147-450B782421CF_UrlInputXItem" isCollection="false" structureRef="String"/>
   <bpmn2:itemDefinition id="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" isCollection="false" structureRef="String"/>
+  <bpmn2:itemDefinition id="ItemDefinition_1" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_2" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_3" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_4" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_5" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_6" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="serviceProvisioning.TerminalrequestProcessing" drools:packageName="org.jbpm" drools:version="1.0" name="TerminalrequestProcessing" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="org.codehaus.jackson.map.ObjectMapper"/>
@@ -107,14 +119,12 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX" drools:dtype="String" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputXItem" name="TaskName"/>
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX" drools:dtype="Object" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputXItem" name="Skippable"/>
-        <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilInputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilInputXItem" name="esasUtil"/>
         <bpmn2:dataInput id="DataInput_8" itemSubjectRef="_esasRequestItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputXItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputXItem" name="esasUtil"/>
         <bpmn2:inputSet id="_SIU6pIMsEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>DataInput_8</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
@@ -129,10 +139,6 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
           <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_SIU6qIMsEee6WIogaVUuWg">ManualSegmentation</bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_SIU6qYMsEee6WIogaVUuWg">_325AD1E7-891E-4C86-9EC1-43205F52F8D8_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_SIU6qoMsEee6WIogaVUuWg">
-        <bpmn2:sourceRef>esasUtil</bpmn2:sourceRef>
-        <bpmn2:targetRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_SIWv0IMsEee6WIogaVUuWg">
         <bpmn2:targetRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX</bpmn2:targetRef>
@@ -207,14 +213,12 @@ return false;]]></bpmn2:conditionExpression>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX" drools:dtype="String" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputXItem" name="TaskName"/>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputXItem" name="Skippable"/>
-        <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilInputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilInputXItem" name="esasUtil"/>
         <bpmn2:dataInput id="DataInput_1" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputXItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputXItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputXItem" name="esasUtil"/>
         <bpmn2:inputSet id="_SIWv4IMsEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX</bpmn2:dataInputRefs>
-          <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>DataInput_1</bpmn2:dataInputRefs>
         </bpmn2:inputSet>
@@ -229,10 +233,6 @@ return false;]]></bpmn2:conditionExpression>
           <bpmn2:from xsi:type="bpmn2:tFormalExpression" id="_SIWv5IMsEee6WIogaVUuWg">ManualVerification</bpmn2:from>
           <bpmn2:to xsi:type="bpmn2:tFormalExpression" id="_SIWv5YMsEee6WIogaVUuWg">_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_TaskNameInputX</bpmn2:to>
         </bpmn2:assignment>
-      </bpmn2:dataInputAssociation>
-      <bpmn2:dataInputAssociation id="_SIWv5oMsEee6WIogaVUuWg">
-        <bpmn2:sourceRef>esasUtil</bpmn2:sourceRef>
-        <bpmn2:targetRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilInputX</bpmn2:targetRef>
       </bpmn2:dataInputAssociation>
       <bpmn2:dataInputAssociation id="_SIWv54MsEee6WIogaVUuWg">
         <bpmn2:targetRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX</bpmn2:targetRef>
