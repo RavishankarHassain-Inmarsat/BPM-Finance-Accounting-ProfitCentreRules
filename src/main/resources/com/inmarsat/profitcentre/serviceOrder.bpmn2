@@ -41,6 +41,12 @@
   <bpmn2:itemDefinition id="ItemDefinition_4" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_5" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_6" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_7" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_8" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_9" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -134,7 +140,6 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrder" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputXItem" name="serviceOrder"/>
-        <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderUtilOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrderUtil" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderUtilOutputXItem" name="serviceOrderUtil"/>
         <bpmn2:inputSet id="_KQFI1YMoEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_userInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_roleInputX</bpmn2:dataInputRefs>
@@ -145,7 +150,6 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_KQFv4IMoEee6WIogaVUuWg">
           <bpmn2:dataOutputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX</bpmn2:dataOutputRefs>
-          <bpmn2:dataOutputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderUtilOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_KQFv4YMoEee6WIogaVUuWg">
@@ -184,10 +188,6 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
       <bpmn2:dataOutputAssociation id="_KQGW_oMoEee6WIogaVUuWg">
         <bpmn2:sourceRef>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>serviceOrder</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:dataOutputAssociation id="_KQGW_4MoEee6WIogaVUuWg">
-        <bpmn2:sourceRef>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderUtilOutputX</bpmn2:sourceRef>
-        <bpmn2:targetRef>serviceOrderUtil</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_KQGXAIMoEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_KQGXAYMoEee6WIogaVUuWg">
