@@ -59,6 +59,18 @@
   <bpmn2:itemDefinition id="ItemDefinition_607" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_626" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_645" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_664" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_665" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_666" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_667" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_668" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_669" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_670" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_671" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_672" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_673" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_674" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_675" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -362,6 +374,7 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="SequenceFlow_8" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java">ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
 String buChange=(String)kcontext.getVariable(&quot;BUChange&quot;);
+System.out.println(&quot;BU flag &quot; + buChange);
 if(so.getProfitCenter()==null)
 {
   return true;
