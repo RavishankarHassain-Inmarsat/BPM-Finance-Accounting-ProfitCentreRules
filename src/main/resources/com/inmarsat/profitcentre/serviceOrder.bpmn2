@@ -47,6 +47,18 @@
   <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_355" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_374" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_393" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_412" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_431" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_450" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_550" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_569" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_588" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_607" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_626" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_645" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -65,6 +77,7 @@
     <bpmn2:property id="method" itemSubjectRef="_methodItem" name="method"/>
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
+    <bpmn2:property id="BUChange" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="BUChange"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -140,6 +153,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrder" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputXItem" name="serviceOrder"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="BUChange"/>
         <bpmn2:inputSet id="_KQFI1YMoEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_userInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_roleInputX</bpmn2:dataInputRefs>
@@ -150,6 +164,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_KQFv4IMoEee6WIogaVUuWg">
           <bpmn2:dataOutputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_KQFv4YMoEee6WIogaVUuWg">
@@ -188,6 +203,10 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
       <bpmn2:dataOutputAssociation id="_KQGW_oMoEee6WIogaVUuWg">
         <bpmn2:sourceRef>_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>serviceOrder</bpmn2:targetRef>
+      </bpmn2:dataOutputAssociation>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
+        <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>BUChange</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_KQGXAIMoEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_KQGXAYMoEee6WIogaVUuWg">
@@ -341,12 +360,17 @@ return false;]]></bpmn2:conditionExpression>
     </bpmn2:exclusiveGateway>
     <bpmn2:sequenceFlow id="SequenceFlow_7" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_DD24DC04-16CF-402E-BE24-B027851D0F7E" targetRef="ExclusiveGateway_2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_8" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1">
-      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java"><![CDATA[ServiceOrder so=(ServiceOrder)kcontext.getVariable("serviceOrder");
+      <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java">ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
+String BUChange=(String)kcontext.getVariable(&quot;BUChange&quot;);
 if(so.getProfitCenter()==null)
 {
   return true;
 }
-return false;]]></bpmn2:conditionExpression>
+else if(BUChange!=null)
+{
+  return true;
+}
+return false;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
     <bpmn2:endEvent id="EndEvent_3" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="End Event 3">
       <bpmn2:extensionElements>
