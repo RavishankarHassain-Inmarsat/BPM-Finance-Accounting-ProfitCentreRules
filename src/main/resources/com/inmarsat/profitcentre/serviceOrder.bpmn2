@@ -361,12 +361,12 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="SequenceFlow_7" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_DD24DC04-16CF-402E-BE24-B027851D0F7E" targetRef="ExclusiveGateway_2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_8" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java">ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
-String BUChange=(String)kcontext.getVariable(&quot;BUChange&quot;);
+String buChange=(String)kcontext.getVariable(&quot;BUChange&quot;);
 if(so.getProfitCenter()==null)
 {
   return true;
 }
-else if(BUChange!=null)
+else if(buChange!=null)
 {
   return true;
 }
