@@ -409,7 +409,7 @@ if(so.getProfitCenter()==null)
 {
   return true;
 }
-else if(kcontext.getVariable(&quot;changeBUFlag&quot;)==true)
+else if((java.lang.Boolean)kcontext.getVariable(&quot;changeBUFlag&quot;)==true)
 {
   return true;
 }
