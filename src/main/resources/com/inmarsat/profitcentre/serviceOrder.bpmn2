@@ -83,6 +83,25 @@
   <bpmn2:itemDefinition id="ItemDefinition_685" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_686" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_687" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_31" isCollection="false" structureRef="java.lang.Boolean"/>
+  <bpmn2:itemDefinition id="ItemDefinition_40" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_41" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_42" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_43" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_44" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_45" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_126" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_127" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_128" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_129" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_130" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_131" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_132" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_133" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_134" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_135" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_136" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_137" isCollection="false"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -101,7 +120,7 @@
     <bpmn2:property id="method" itemSubjectRef="_methodItem" name="method"/>
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
-    <bpmn2:property id="BUChange" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="BUChange"/>
+    <bpmn2:property id="changeBUFlag" itemSubjectRef="ItemDefinition_31" name="changeBUFlag"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -177,7 +196,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrder" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputXItem" name="serviceOrder"/>
-        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="BUChange"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="ItemDefinition_31" name="changeBUFlag"/>
         <bpmn2:inputSet id="_KQFI1YMoEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_userInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_roleInputX</bpmn2:dataInputRefs>
@@ -230,7 +249,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
       </bpmn2:dataOutputAssociation>
       <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
-        <bpmn2:targetRef>BUChange</bpmn2:targetRef>
+        <bpmn2:targetRef>changeBUFlag</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_KQGXAIMoEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_KQGXAYMoEee6WIogaVUuWg">
@@ -385,13 +404,12 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="SequenceFlow_7" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_DD24DC04-16CF-402E-BE24-B027851D0F7E" targetRef="ExclusiveGateway_2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_8" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java">ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
-String buChange=(String)kcontext.getVariable(&quot;BUChange&quot;);
-System.out.println(&quot;BU flag &quot; + kcontext.getVariable(&quot;BUChange&quot;));
+System.out.println(&quot;BU flag &quot; + kcontext.getVariable(&quot;changeBUFlag&quot;));
 if(so.getProfitCenter()==null)
 {
   return true;
 }
-else if((String)kcontext.getVariable(&quot;BUChange&quot;)!=null)
+else if(kcontext.getVariable(&quot;changeBUFlag&quot;)==true)
 {
   return true;
 }
@@ -457,145 +475,145 @@ return false;</bpmn2:conditionExpression>
     <bpmndi:BPMNPlane id="_KQLPcYMoEee6WIogaVUuWg" bpmnElement="ProfitCentre.serviceOrder">
       <bpmndi:BPMNShape id="_KQLPcoMoEee6WIogaVUuWg" bpmnElement="processStartEvent">
         <dc:Bounds height="30.0" width="30.0" x="10.0" y="340.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_1"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPc4MoEee6WIogaVUuWg" bpmnElement="_5093EA39-9D88-4722-92AF-906F04FD5B0E">
         <dc:Bounds height="80.0" width="100.0" x="135.0" y="315.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_2">
           <dc:Bounds height="45.0" width="87.0" x="141.0" y="332.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPdIMoEee6WIogaVUuWg" bpmnElement="_53349D2D-756D-445B-899C-B552322A381F" isMarkerVisible="true">
         <dc:Bounds height="40.0" width="40.0" x="300.0" y="330.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_3"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPdYMoEee6WIogaVUuWg" bpmnElement="_DD24DC04-16CF-402E-BE24-B027851D0F7E">
         <dc:Bounds height="80.0" width="100.0" x="440.0" y="555.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_4">
           <dc:Bounds height="30.0" width="60.0" x="460.0" y="580.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPdoMoEee6WIogaVUuWg" bpmnElement="_678C7B3A-6EC4-437B-8FDA-0FACABCEF145">
         <dc:Bounds height="80.0" width="100.0" x="270.0" y="555.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_5">
           <dc:Bounds height="30.0" width="84.0" x="278.0" y="580.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPd4MoEee6WIogaVUuWg" bpmnElement="_5E0C229D-4C9E-4C3C-89BE-61A80F5FA729" isMarkerVisible="true">
         <dc:Bounds height="40.0" width="40.0" x="300.0" y="225.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_6"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPeIMoEee6WIogaVUuWg" bpmnElement="_4782CB17-16AD-493A-B66E-1AB9A6EAA872" isMarkerVisible="true">
         <dc:Bounds height="40.0" width="40.0" x="615.0" y="330.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_7"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPeYMoEee6WIogaVUuWg" bpmnElement="ExclusiveGateway_1" isMarkerVisible="true">
         <dc:Bounds height="40.0" width="40.0" x="165.0" y="575.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_8">
           <dc:Bounds height="30.0" width="57.0" x="157.0" y="615.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPeoMoEee6WIogaVUuWg" bpmnElement="EndEvent_1">
         <dc:Bounds height="28.0" width="28.0" x="880.0" y="341.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_9">
           <dc:Bounds height="15.0" width="65.0" x="862.0" y="369.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPe4MoEee6WIogaVUuWg" bpmnElement="ExclusiveGateway_2" isMarkerVisible="true">
         <dc:Bounds height="40.0" width="40.0" x="470.0" y="695.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_10">
           <dc:Bounds height="30.0" width="57.0" x="462.0" y="735.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPfIMoEee6WIogaVUuWg" bpmnElement="EndEvent_3">
         <dc:Bounds height="28.0" width="28.0" x="583.0" y="697.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_11">
           <dc:Bounds height="15.0" width="65.0" x="565.0" y="725.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="_KQLPfYMoEee6WIogaVUuWg" bpmnElement="_CEDCDA05-2E50-4C88-805C-79658EB8BA7D">
         <dc:Bounds height="80.0" width="100.0" x="720.0" y="315.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_12">
           <dc:Bounds height="15.0" width="97.0" x="721.0" y="347.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="_KQLPfoMoEee6WIogaVUuWg" bpmnElement="_EA5B2221-4EB5-4673-B403-BAFFDACB70C1" sourceElement="_KQLPc4MoEee6WIogaVUuWg" targetElement="_KQLPdIMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="185.0" y="355.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_13"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2gIMoEee6WIogaVUuWg" bpmnElement="_3A6945ED-E9A9-41A1-A7CE-ECDC35832D3A" sourceElement="_KQLPdIMoEee6WIogaVUuWg" targetElement="_KQLPd4MoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_14"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2gYMoEee6WIogaVUuWg" bpmnElement="_798E5527-0E81-4512-A4A9-A45B711C6168" sourceElement="_KQLPdIMoEee6WIogaVUuWg" targetElement="_KQLPdoMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_15"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2goMoEee6WIogaVUuWg" bpmnElement="_3B1C0700-A916-4760-BFD0-3C8335D383A3" sourceElement="_KQLPd4MoEee6WIogaVUuWg" targetElement="_KQLPdYMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_16"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2g4MoEee6WIogaVUuWg" bpmnElement="_E3CC362D-267C-4DCB-866A-9272AC3A11FC" sourceElement="_KQLPdIMoEee6WIogaVUuWg" targetElement="_KQLPeIMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="635.0" y="350.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_17"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2hIMoEee6WIogaVUuWg" bpmnElement="_72825301-3E3B-4BA0-827F-EBD9357EC78C" sourceElement="_KQLPdoMoEee6WIogaVUuWg" targetElement="_KQLPeYMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="240.0" y="594.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_18"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2hYMoEee6WIogaVUuWg" bpmnElement="_6C2384CC-0173-425B-8823-0B2641A06BAB" sourceElement="_KQLPd4MoEee6WIogaVUuWg" targetElement="_KQLPeIMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
         <di:waypoint xsi:type="dc:Point" x="320.0" y="76.0"/>
         <di:waypoint xsi:type="dc:Point" x="635.0" y="76.0"/>
         <di:waypoint xsi:type="dc:Point" x="635.0" y="350.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_19"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2hoMoEee6WIogaVUuWg" bpmnElement="SequenceFlow_1" sourceElement="_KQLPcoMoEee6WIogaVUuWg" targetElement="_KQLPeYMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="25.0" y="355.0"/>
         <di:waypoint xsi:type="dc:Point" x="25.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_20"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2h4MoEee6WIogaVUuWg" bpmnElement="SequenceFlow_2" sourceElement="_KQLPeYMoEee6WIogaVUuWg" targetElement="_KQLPc4MoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="185.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="355.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_21"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQNEoIMoEee6WIogaVUuWg" bpmnElement="SequenceFlow_7" sourceElement="_KQLPdYMoEee6WIogaVUuWg" targetElement="_KQLPe4MoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="490.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="489.0" y="662.0"/>
         <di:waypoint xsi:type="dc:Point" x="490.0" y="715.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_22"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQNrsIMoEee6WIogaVUuWg" bpmnElement="SequenceFlow_8" sourceElement="_KQLPe4MoEee6WIogaVUuWg" targetElement="_KQLPeYMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="490.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="185.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_23"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQNrsYMoEee6WIogaVUuWg" bpmnElement="SequenceFlow_9" sourceElement="_KQLPe4MoEee6WIogaVUuWg" targetElement="_KQLPfIMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="490.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="549.0" y="715.0"/>
         <di:waypoint xsi:type="dc:Point" x="597.0" y="711.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_24"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQNrsoMoEee6WIogaVUuWg" bpmnElement="_618878A2-EFDF-41E7-ACA1-59D6E31C6D7D" sourceElement="_KQLPeIMoEee6WIogaVUuWg" targetElement="_KQLPfYMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="635.0" y="350.0"/>
         <di:waypoint xsi:type="dc:Point" x="770.0" y="355.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_25"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQQvAIMoEee6WIogaVUuWg" bpmnElement="_56D1D085-1491-4BBA-B192-1E1AF9E0C915" sourceElement="_KQLPfYMoEee6WIogaVUuWg" targetElement="_KQLPeoMoEee6WIogaVUuWg">
         <di:waypoint xsi:type="dc:Point" x="770.0" y="355.0"/>
         <di:waypoint xsi:type="dc:Point" x="894.0" y="355.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_26"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
