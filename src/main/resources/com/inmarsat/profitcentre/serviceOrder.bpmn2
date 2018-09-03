@@ -102,6 +102,25 @@
   <bpmn2:itemDefinition id="ItemDefinition_135" isCollection="false"/>
   <bpmn2:itemDefinition id="ItemDefinition_136" isCollection="false"/>
   <bpmn2:itemDefinition id="ItemDefinition_137" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_27" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_28" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_29" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_30" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_32" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_33" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_47" isCollection="false" structureRef="java.lang.String"/>
+  <bpmn2:itemDefinition id="ItemDefinition_76" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_77" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_78" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_79" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_80" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_81" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -120,7 +139,7 @@
     <bpmn2:property id="method" itemSubjectRef="_methodItem" name="method"/>
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
-    <bpmn2:property id="changeBUFlag" itemSubjectRef="ItemDefinition_31" name="changeBUFlag"/>
+    <bpmn2:property id="changeBUFlag" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="changeBUFlag"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -196,7 +215,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrder" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputXItem" name="serviceOrder"/>
-        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="ItemDefinition_31" name="changeBUFlag"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="changeBUFlag"/>
         <bpmn2:inputSet id="_KQFI1YMoEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_userInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_roleInputX</bpmn2:dataInputRefs>
@@ -409,7 +428,7 @@ if(so.getProfitCenter()==null)
 {
   return true;
 }
-else if((java.lang.Boolean)kcontext.getVariable(&quot;changeBUFlag&quot;)==true)
+else if((String)kcontext.getVariable(&quot;changeBUFlag&quot;)!=null)
 {
   return true;
 }
