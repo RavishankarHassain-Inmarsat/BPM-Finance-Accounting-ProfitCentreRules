@@ -121,6 +121,12 @@
   <bpmn2:itemDefinition id="ItemDefinition_79" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_80" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_81" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_19" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_20" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_21" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_22" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_23" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_24" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -139,7 +145,7 @@
     <bpmn2:property id="method" itemSubjectRef="_methodItem" name="method"/>
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
-    <bpmn2:property id="changeBUFlag" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="changeBUFlag"/>
+    <bpmn2:property id="dataChangeFlag" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="dataChangeFlag"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -215,7 +221,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_GroupIdInputXItem" name="GroupId"/>
         <bpmn2:dataInput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataOutput id="_DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputX" drools:dtype="com.inmarsat.profitcentre.ServiceOrder" itemSubjectRef="__DD24DC04-16CF-402E-BE24-B027851D0F7E_serviceOrderOutputXItem" name="serviceOrder"/>
-        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="changeBUFlag"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="dataChangeFlag"/>
         <bpmn2:inputSet id="_KQFI1YMoEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_userInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_DD24DC04-16CF-402E-BE24-B027851D0F7E_roleInputX</bpmn2:dataInputRefs>
@@ -268,7 +274,7 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
       </bpmn2:dataOutputAssociation>
       <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
         <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
-        <bpmn2:targetRef>changeBUFlag</bpmn2:targetRef>
+        <bpmn2:targetRef>dataChangeFlag</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_KQGXAIMoEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_KQGXAYMoEee6WIogaVUuWg">
@@ -423,12 +429,12 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="SequenceFlow_7" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_DD24DC04-16CF-402E-BE24-B027851D0F7E" targetRef="ExclusiveGateway_2"/>
     <bpmn2:sequenceFlow id="SequenceFlow_8" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_2" targetRef="ExclusiveGateway_1">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_KQKoYIMoEee6WIogaVUuWg" language="http://www.java.com/java">ServiceOrder so=(ServiceOrder)kcontext.getVariable(&quot;serviceOrder&quot;);
-System.out.println(&quot;BU flag &quot; + kcontext.getVariable(&quot;changeBUFlag&quot;));
+System.out.println(&quot;Data Change &quot; + kcontext.getVariable(&quot;dataChangeFlag&quot;));
 if(so.getProfitCenter()==null)
 {
   return true;
 }
-else if((String)kcontext.getVariable(&quot;changeBUFlag&quot;)!=null)
+else if((String)kcontext.getVariable(&quot;dataChangeFlag&quot;)!=null)
 {
   return true;
 }
