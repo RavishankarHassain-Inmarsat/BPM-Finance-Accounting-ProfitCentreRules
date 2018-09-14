@@ -48,6 +48,30 @@
   <bpmn2:itemDefinition id="ItemDefinition_148" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_149" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_150" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_250" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_251" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_252" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_253" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_254" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_255" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_256" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_257" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_258" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_259" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_260" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_261" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_262" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_263" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_264" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_265" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_266" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_267" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_268" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_269" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_270" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_271" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_272" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_273" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="serviceProvisioning.TerminalrequestProcessing" drools:packageName="org.jbpm" drools:version="1.0" name="TerminalrequestProcessing" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="org.codehaus.jackson.map.ObjectMapper"/>
@@ -134,7 +158,6 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
         <bpmn2:dataInput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX" drools:dtype="Object" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataInput id="DataInput_8" itemSubjectRef="_esasRequestItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputXItem" name="esasRequest"/>
-        <bpmn2:dataOutput id="_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputXItem" name="esasUtil"/>
         <bpmn2:inputSet id="_SIU6pIMsEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_SkippableInputX</bpmn2:dataInputRefs>
@@ -143,7 +166,6 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_SIU6pYMsEee6WIogaVUuWg">
           <bpmn2:dataOutputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX</bpmn2:dataOutputRefs>
-          <bpmn2:dataOutputRefs>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputX</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_SIU6poMsEee6WIogaVUuWg">
@@ -174,10 +196,6 @@ System.out.println(&quot;On Exit ::&quot; +request.getProfitCentre());</drools:s
       <bpmn2:dataOutputAssociation id="_SIWv2IMsEee6WIogaVUuWg">
         <bpmn2:sourceRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasRequestOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
-      </bpmn2:dataOutputAssociation>
-      <bpmn2:dataOutputAssociation id="_SIWv2YMsEee6WIogaVUuWg">
-        <bpmn2:sourceRef>_325AD1E7-891E-4C86-9EC1-43205F52F8D8_esasUtilOutputX</bpmn2:sourceRef>
-        <bpmn2:targetRef>esasUtil</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_SIWv2oMsEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_SIWv24MsEee6WIogaVUuWg">
