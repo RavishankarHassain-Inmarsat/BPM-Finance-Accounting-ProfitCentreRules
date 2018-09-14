@@ -36,6 +36,18 @@
   <bpmn2:itemDefinition id="ItemDefinition_10" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_11" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_12" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_13" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_14" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_15" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_16" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_17" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_18" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_145" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_146" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_147" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_148" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_149" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_150" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="serviceProvisioning.TerminalrequestProcessing" drools:packageName="org.jbpm" drools:version="1.0" name="TerminalrequestProcessing" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="org.codehaus.jackson.map.ObjectMapper"/>
@@ -47,6 +59,7 @@
     <bpmn2:property id="esasUtil" itemSubjectRef="_esasUtilItem" name="esasUtil"/>
     <bpmn2:property id="restUrl" itemSubjectRef="_restUrlItem" name="restUrl"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
+    <bpmn2:property id="dataChangeFlag" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="dataChangeFlag"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -215,7 +228,7 @@ return false;]]></bpmn2:conditionExpression>
         <bpmn2:dataInput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX" drools:dtype="Object" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputXItem" name="Skippable"/>
         <bpmn2:dataInput id="DataInput_1" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputXItem" name="esasRequest"/>
         <bpmn2:dataOutput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX" drools:dtype="com.inmarsat.profitcentre.ESASRequest" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputXItem" name="esasRequest"/>
-        <bpmn2:dataOutput id="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputX" drools:dtype="com.inmarsat.profitcentre.ESASUtil" itemSubjectRef="__93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputXItem" name="esasUtil"/>
+        <bpmn2:dataOutput id="DataOutput_1" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="dataChangeFlag"/>
         <bpmn2:inputSet id="_SIWv4IMsEee6WIogaVUuWg">
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_GroupIdInputX</bpmn2:dataInputRefs>
           <bpmn2:dataInputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_SkippableInputX</bpmn2:dataInputRefs>
@@ -224,7 +237,7 @@ return false;]]></bpmn2:conditionExpression>
         </bpmn2:inputSet>
         <bpmn2:outputSet id="_SIWv4YMsEee6WIogaVUuWg">
           <bpmn2:dataOutputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX</bpmn2:dataOutputRefs>
-          <bpmn2:dataOutputRefs>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputX</bpmn2:dataOutputRefs>
+          <bpmn2:dataOutputRefs>DataOutput_1</bpmn2:dataOutputRefs>
         </bpmn2:outputSet>
       </bpmn2:ioSpecification>
       <bpmn2:dataInputAssociation id="_SIWv4oMsEee6WIogaVUuWg">
@@ -256,9 +269,9 @@ return false;]]></bpmn2:conditionExpression>
         <bpmn2:sourceRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasRequestOutputX</bpmn2:sourceRef>
         <bpmn2:targetRef>esasRequest</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
-      <bpmn2:dataOutputAssociation id="_SIWv8IMsEee6WIogaVUuWg">
-        <bpmn2:sourceRef>_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E_esasUtilOutputX</bpmn2:sourceRef>
-        <bpmn2:targetRef>esasUtil</bpmn2:targetRef>
+      <bpmn2:dataOutputAssociation id="DataOutputAssociation_1">
+        <bpmn2:sourceRef>DataOutput_1</bpmn2:sourceRef>
+        <bpmn2:targetRef>dataChangeFlag</bpmn2:targetRef>
       </bpmn2:dataOutputAssociation>
       <bpmn2:potentialOwner id="_SIWv8YMsEee6WIogaVUuWg">
         <bpmn2:resourceAssignmentExpression id="_SIWv8oMsEee6WIogaVUuWg">
@@ -303,6 +316,7 @@ return false;]]></bpmn2:conditionExpression>
     <bpmn2:sequenceFlow id="SequenceFlow_2" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E" targetRef="ExclusiveGateway_1"/>
     <bpmn2:sequenceFlow id="SequenceFlow_7" drools:selectable="true" drools:priority="1" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="ExclusiveGateway_1" targetRef="_42A9CE4C-E21F-45D7-897A-5EFD52E09F6B">
       <bpmn2:conditionExpression xsi:type="bpmn2:tFormalExpression" id="_SIXW4oMsEee6WIogaVUuWg" language="http://www.java.com/java">ESASRequest request=(ESASRequest)kcontext.getVariable(&quot;esasRequest&quot;);
+System.out.println(&quot;Data Change &quot; + kcontext.getVariable(&quot;dataChangeFlag&quot;));
 if(request.getDpId()!=null &amp;&amp; request.getProfitCentre()==null)
 {
   return true;
@@ -310,6 +324,10 @@ if(request.getDpId()!=null &amp;&amp; request.getProfitCentre()==null)
 else if(request.getDpId()==null &amp;&amp; request.getBusinessUnitPC()==null)
 {
 return true;
+}
+else if((String)kcontext.getVariable(&quot;dataChangeFlag&quot;)!=null)
+{
+  return true;
 }
 return false;</bpmn2:conditionExpression>
     </bpmn2:sequenceFlow>
