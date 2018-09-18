@@ -404,6 +404,27 @@ return false;</bpmn2:conditionExpression>
     </bpmn2:task>
     <bpmn2:sequenceFlow id="_6F29014F-FA04-4191-B5F0-43B150795453" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_B9018F70-78D3-42BE-B415-330FE569C6D8" targetRef="_DCD6C405-4659-4E5B-9147-450B782421CF"/>
     <bpmn2:sequenceFlow id="_92DCFB3D-ABF0-4807-9043-452BE8DCC6B9" drools:selectable="true" color:background-color="#000000" color:border-color="#000000" color:color="#000000" sourceRef="_DCD6C405-4659-4E5B-9147-450B782421CF" targetRef="EndEvent_2"/>
+    <bpmn2:boundaryEvent id="BoundaryEvent_1" name="" attachedToRef="_93E294B6-2096-4DF4-B18C-0F01ECEEFA8E">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
+      <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1" language="http://www.java.com/java">60s</bpmn2:timeDuration>
+      </bpmn2:timerEventDefinition>
+    </bpmn2:boundaryEvent>
+    <bpmn2:endEvent id="EndEvent_3" name="End Event 3">
+      <bpmn2:extensionElements>
+        <drools:metaData name="elementname">
+          <drools:metaValue><![CDATA[End Event 3]]></drools:metaValue>
+        </drools:metaData>
+      </bpmn2:extensionElements>
+      <bpmn2:incoming>SequenceFlow_1</bpmn2:incoming>
+      <bpmn2:terminateEventDefinition id="TerminateEventDefinition_1"/>
+    </bpmn2:endEvent>
+    <bpmn2:sequenceFlow id="SequenceFlow_1" drools:priority="1" sourceRef="BoundaryEvent_1" targetRef="EndEvent_3"/>
   </bpmn2:process>
   <bpmndi:BPMNDiagram id="_SIXW7oMsEee6WIogaVUuWg">
     <bpmndi:BPMNPlane id="_SIXW74MsEee6WIogaVUuWg" bpmnElement="serviceProvisioning.TerminalrequestProcessing">
@@ -463,6 +484,16 @@ return false;</bpmn2:conditionExpression>
         <dc:Bounds height="80.0" width="100.0" x="676.0" y="554.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_11">
           <dc:Bounds height="15.0" width="57.0" x="697.0" y="586.0"/>
+        </bpmndi:BPMNLabel>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_BoundaryEvent_1" bpmnElement="BoundaryEvent_1">
+        <dc:Bounds height="36.0" width="36.0" x="553.0" y="577.0"/>
+        <bpmndi:BPMNLabel/>
+      </bpmndi:BPMNShape>
+      <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_3">
+        <dc:Bounds height="36.0" width="36.0" x="610.0" y="577.0"/>
+        <bpmndi:BPMNLabel>
+          <dc:Bounds height="15.0" width="65.0" x="596.0" y="613.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNEdge id="_SIX99YMsEee6WIogaVUuWg" bpmnElement="_6BE612E9-FE4F-4AC8-BA67-112706C472E5" sourceElement="_SIXW8YMsEee6WIogaVUuWg" targetElement="_SIXW8oMsEee6WIogaVUuWg">
@@ -530,6 +561,12 @@ return false;</bpmn2:conditionExpression>
         <di:waypoint xsi:type="dc:Point" x="726.0" y="594.0"/>
         <di:waypoint xsi:type="dc:Point" x="726.0" y="701.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_23"/>
+      </bpmndi:BPMNEdge>
+      <bpmndi:BPMNEdge id="BPMNEdge_SequenceFlow_1" bpmnElement="SequenceFlow_1" sourceElement="BPMNShape_BoundaryEvent_1" targetElement="BPMNShape_EndEvent_1">
+        <di:waypoint xsi:type="dc:Point" x="589.0" y="595.0"/>
+        <di:waypoint xsi:type="dc:Point" x="599.0" y="595.0"/>
+        <di:waypoint xsi:type="dc:Point" x="610.0" y="595.0"/>
+        <bpmndi:BPMNLabel/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
