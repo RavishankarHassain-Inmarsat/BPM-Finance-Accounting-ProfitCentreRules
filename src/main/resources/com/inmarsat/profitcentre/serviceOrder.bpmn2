@@ -127,6 +127,24 @@
   <bpmn2:itemDefinition id="ItemDefinition_22" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_23" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_24" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_25" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_26" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_34" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_35" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_36" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_37" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_38" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_39" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_46" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_48" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_49" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_50" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_51" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_52" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_53" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_54" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_55" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_56" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -210,6 +228,9 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Manual Verification]]></drools:metaValue>
         </drools:metaData>
+        <drools:onExit-script scriptFormat="http://www.java.com/java">
+          <drools:script>System.out.println(&quot;On Exit Manual Verification&quot;);</drools:script>
+        </drools:onExit-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_3B1C0700-A916-4760-BFD0-3C8335D383A3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
@@ -503,7 +524,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
       <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
-        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5">60s</bpmn2:timeDuration>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">1m</bpmn2:timeDuration>
       </bpmn2:timerEventDefinition>
     </bpmn2:boundaryEvent>
     <bpmn2:endEvent id="EndEvent_2" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="End Event 3">
