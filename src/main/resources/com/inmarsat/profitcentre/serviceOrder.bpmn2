@@ -145,6 +145,36 @@
   <bpmn2:itemDefinition id="ItemDefinition_54" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_55" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_56" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_57" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_58" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_59" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_60" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_61" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_62" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_63" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_64" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_65" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_66" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_67" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_68" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_69" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_70" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_71" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_72" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_73" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_74" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_75" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_82" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_83" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_84" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_85" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_86" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_87" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_88" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_89" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_90" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_91" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_92" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -232,6 +262,12 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <drools:onExit-script scriptFormat="http://www.java.com/java">
           <drools:script>System.out.println(&quot;On Exit Manual Verification&quot;);</drools:script>
         </drools:onExit-script>
+        <drools:metaData name="customAsync">
+          <drools:metaValue><![CDATA[true]]></drools:metaValue>
+        </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script>System.out.println(&quot;Data Change &quot; + kcontext.getVariable(&quot;{timerDuration}&quot;));</drools:script>
+        </drools:onEntry-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_3B1C0700-A916-4760-BFD0-3C8335D383A3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
