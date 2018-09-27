@@ -164,6 +164,7 @@
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
     <bpmn2:property id="dataChangeFlag" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="dataChangeFlag"/>
+    <bpmn2:property id="timerDuration" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="timerDuration"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -524,7 +525,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
       <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
-        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">1m</bpmn2:timeDuration>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">#{timerDuration}</bpmn2:timeDuration>
       </bpmn2:timerEventDefinition>
     </bpmn2:boundaryEvent>
     <bpmn2:endEvent id="EndEvent_2" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="End Event 3">
@@ -605,11 +606,11 @@ return false;</bpmn2:conditionExpression>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_BoundaryEvent_2" bpmnElement="BoundaryEvent_2">
         <dc:Bounds height="36.0" width="36.0" x="522.0" y="577.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_13"/>
       </bpmndi:BPMNShape>
       <bpmndi:BPMNShape id="BPMNShape_EndEvent_1" bpmnElement="EndEvent_2">
         <dc:Bounds height="28.0" width="28.0" x="641.0" y="581.0"/>
-        <bpmndi:BPMNLabel>
+        <bpmndi:BPMNLabel id="BPMNLabel_14">
           <dc:Bounds height="15.0" width="65.0" x="623.0" y="609.0"/>
         </bpmndi:BPMNLabel>
       </bpmndi:BPMNShape>
@@ -646,10 +647,10 @@ return false;</bpmn2:conditionExpression>
         <bpmndi:BPMNLabel id="BPMNLabel_18"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2hYMoEee6WIogaVUuWg" bpmnElement="_6C2384CC-0173-425B-8823-0B2641A06BAB" sourceElement="_KQLPd4MoEee6WIogaVUuWg" targetElement="_KQLPeIMoEee6WIogaVUuWg">
-        <di:waypoint xsi:type="dc:Point" x="320.0" y="245.0"/>
-        <di:waypoint xsi:type="dc:Point" x="320.0" y="76.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="76.0"/>
-        <di:waypoint xsi:type="dc:Point" x="635.0" y="350.0"/>
+        <di:waypoint xsi:type="dc:Point" x="320.0" y="225.0"/>
+        <di:waypoint xsi:type="dc:Point" x="320.0" y="202.0"/>
+        <di:waypoint xsi:type="dc:Point" x="634.0" y="202.0"/>
+        <di:waypoint xsi:type="dc:Point" x="635.0" y="330.0"/>
         <bpmndi:BPMNLabel id="BPMNLabel_19"/>
       </bpmndi:BPMNEdge>
       <bpmndi:BPMNEdge id="_KQL2hoMoEee6WIogaVUuWg" bpmnElement="SequenceFlow_1" sourceElement="_KQLPcoMoEee6WIogaVUuWg" targetElement="_KQLPeYMoEee6WIogaVUuWg">
@@ -695,7 +696,7 @@ return false;</bpmn2:conditionExpression>
         <di:waypoint xsi:type="dc:Point" x="558.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="599.0" y="595.0"/>
         <di:waypoint xsi:type="dc:Point" x="641.0" y="595.0"/>
-        <bpmndi:BPMNLabel/>
+        <bpmndi:BPMNLabel id="BPMNLabel_27"/>
       </bpmndi:BPMNEdge>
     </bpmndi:BPMNPlane>
   </bpmndi:BPMNDiagram>
