@@ -121,7 +121,7 @@
                     "name": "secure-${SERVICE_NAME}"
                 },
                 "tls": {
-                    "termination": "edge"
+                    "termination": "passthrough"
                 }
             }
         },
