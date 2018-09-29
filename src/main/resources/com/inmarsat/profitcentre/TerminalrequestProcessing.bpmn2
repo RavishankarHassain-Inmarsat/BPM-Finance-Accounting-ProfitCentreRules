@@ -90,6 +90,12 @@
   <bpmn2:itemDefinition id="ItemDefinition_34" isCollection="false"/>
   <bpmn2:itemDefinition id="ItemDefinition_35" isCollection="false"/>
   <bpmn2:itemDefinition id="ItemDefinition_36" isCollection="false"/>
+  <bpmn2:itemDefinition id="ItemDefinition_127" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_128" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_129" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_130" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_131" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_132" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="serviceProvisioning.TerminalrequestProcessing" drools:packageName="org.jbpm" drools:version="1.0" name="TerminalrequestProcessing" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="org.codehaus.jackson.map.ObjectMapper"/>
@@ -102,7 +108,6 @@
     <bpmn2:property id="restUrl" itemSubjectRef="_restUrlItem" name="restUrl"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
     <bpmn2:property id="dataChangeFlag" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="dataChangeFlag"/>
-    <bpmn2:property id="timerDuration" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="timerDuration"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -440,7 +445,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
-        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">#{timerDuration}</bpmn2:timeDuration>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">10m</bpmn2:timeDuration>
       </bpmn2:timerEventDefinition>
     </bpmn2:boundaryEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_1" drools:priority="1" sourceRef="BoundaryEvent_1" targetRef="EndEvent_5"/>
