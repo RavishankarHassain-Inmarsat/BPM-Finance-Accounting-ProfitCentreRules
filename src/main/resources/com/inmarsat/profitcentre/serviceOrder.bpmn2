@@ -181,6 +181,12 @@
   <bpmn2:itemDefinition id="ItemDefinition_96" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_97" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_98" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_307" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_308" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_309" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_310" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_311" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_312" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="ProfitCentre.serviceOrder" drools:packageName="org.jbpm" drools:version="1.0" name="serviceOrder" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="com.inmarsat.profitcentre.ServiceOrder"/>
@@ -200,6 +206,7 @@
     <bpmn2:property id="serviceOrderUtil" itemSubjectRef="_serviceOrderUtilItem" name="serviceOrderUtil"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
     <bpmn2:property id="dataChangeFlag" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="dataChangeFlag"/>
+    <bpmn2:property id="timerValue" itemSubjectRef="__CEDCDA05-2E50-4C88-805C-79658EB8BA7D_ResultOutputXItem" name="timerValue"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -270,7 +277,9 @@ System.out.println(&quot;On Exit &quot;+so.getProfitCenter());</drools:script>
         <drools:metaData name="customAsync">
           <drools:metaValue><![CDATA[true]]></drools:metaValue>
         </drools:metaData>
-        <drools:onEntry-script scriptFormat="http://www.java.com/java"/>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script>System.out.println(&quot;Timer Value :: &quot; + kcontext.getVariable(&quot;timerValue&quot;));</drools:script>
+        </drools:onEntry-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_3B1C0700-A916-4760-BFD0-3C8335D383A3</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_7</bpmn2:outgoing>
@@ -564,7 +573,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>SequenceFlow_3</bpmn2:outgoing>
       <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
-        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">10m</bpmn2:timeDuration>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_5" language="http://www.java.com/java">#{timerValue}</bpmn2:timeDuration>
       </bpmn2:timerEventDefinition>
     </bpmn2:boundaryEvent>
     <bpmn2:endEvent id="EndEvent_2" drools:selectable="true" color:background-color="#ff6347" color:border-color="#000000" color:color="#000000" name="End Event 3">
