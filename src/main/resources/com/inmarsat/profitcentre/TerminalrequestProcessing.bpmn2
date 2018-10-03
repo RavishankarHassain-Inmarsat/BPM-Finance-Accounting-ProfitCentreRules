@@ -96,6 +96,18 @@
   <bpmn2:itemDefinition id="ItemDefinition_130" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_131" isCollection="false" structureRef="Object"/>
   <bpmn2:itemDefinition id="ItemDefinition_132" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_370" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_371" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_372" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_373" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_374" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_375" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_376" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_377" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_378" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_379" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_380" isCollection="false" structureRef="Object"/>
+  <bpmn2:itemDefinition id="ItemDefinition_381" isCollection="false" structureRef="Object"/>
   <bpmn2:process id="serviceProvisioning.TerminalrequestProcessing" drools:packageName="org.jbpm" drools:version="1.0" name="TerminalrequestProcessing" isExecutable="true">
     <bpmn2:extensionElements>
       <drools:import name="org.codehaus.jackson.map.ObjectMapper"/>
@@ -108,6 +120,7 @@
     <bpmn2:property id="restUrl" itemSubjectRef="_restUrlItem" name="restUrl"/>
     <bpmn2:property id="errorMsg" itemSubjectRef="_errorMsgItem" name="errorMsg"/>
     <bpmn2:property id="dataChangeFlag" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="dataChangeFlag"/>
+    <bpmn2:property id="timerValue" itemSubjectRef="__DCD6C405-4659-4E5B-9147-450B782421CF_ResultOutputXItem" name="timerValue"/>
     <bpmn2:startEvent id="processStartEvent" drools:selectable="true" color:background-color="#9acd32" color:border-color="#000000" color:color="#000000" name="">
       <bpmn2:extensionElements>
         <drools:metaData name="elementname">
@@ -261,6 +274,9 @@ return false;]]></bpmn2:conditionExpression>
         <drools:metaData name="elementname">
           <drools:metaValue><![CDATA[Manual Verification]]></drools:metaValue>
         </drools:metaData>
+        <drools:onEntry-script scriptFormat="http://www.java.com/java">
+          <drools:script>System.out.println(&quot;Timer Value :: &quot; + kcontext.getVariable(&quot;timerValue&quot;));</drools:script>
+        </drools:onEntry-script>
       </bpmn2:extensionElements>
       <bpmn2:incoming>_F95E00E0-CC63-4B5E-B6EA-2598C5FCF864</bpmn2:incoming>
       <bpmn2:outgoing>SequenceFlow_2</bpmn2:outgoing>
@@ -445,7 +461,7 @@ return false;</bpmn2:conditionExpression>
       </bpmn2:extensionElements>
       <bpmn2:outgoing>SequenceFlow_1</bpmn2:outgoing>
       <bpmn2:timerEventDefinition id="TimerEventDefinition_1">
-        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">10m</bpmn2:timeDuration>
+        <bpmn2:timeDuration xsi:type="bpmn2:tFormalExpression" id="FormalExpression_1">#{timerValue}</bpmn2:timeDuration>
       </bpmn2:timerEventDefinition>
     </bpmn2:boundaryEvent>
     <bpmn2:sequenceFlow id="SequenceFlow_1" drools:priority="1" sourceRef="BoundaryEvent_1" targetRef="EndEvent_5"/>
