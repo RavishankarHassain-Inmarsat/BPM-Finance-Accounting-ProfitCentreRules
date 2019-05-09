@@ -32,7 +32,7 @@ end
 
 
 
-rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 1020"
+rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 1020" salience 1 
 ruleflow-group "profitCentre"
 	when 
 		$so : ServiceOrder( 
@@ -60,7 +60,7 @@ ruleflow-group "profitCentre"
 		update($so);
 end
 
-rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 3033"
+rule "Rule 1 - New service activation order for specific DPs (DP id 1020 & 3033)DP applicable - DP id 3033" salience 2
 ruleflow-group "profitCentre"
 	when 
 			$so : ServiceOrder( satisfiedRuleName == null, 
@@ -83,7 +83,7 @@ ruleflow-group "profitCentre"
 		update($so);
 end
 
-rule "Rule 3 - Adding a bespoke rate plan as part of activation service order"
+rule "Rule 3 - Adding a bespoke rate plan as part of activation service order" salience 3
 	ruleflow-group "profitCentre"
 	when 
 			$util:ServiceOrderUtil(
@@ -111,7 +111,7 @@ rule "Rule 3 - Adding a bespoke rate plan as part of activation service order"
 		update($so);
 end
 
-rule "Rule 4 - Activation Service order belonging to specific Govt. service providers and industry code"
+rule "Rule 4 - Activation Service order belonging to specific Govt. service providers and industry code" salience 4
 	ruleflow-group "profitCentre"
 	when 
 		    $util : ServiceOrderUtil(
@@ -139,7 +139,7 @@ rule "Rule 4 - Activation Service order belonging to specific Govt. service prov
 		update($so);
 end
 
-rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - Maritime"
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - Maritime" salience 5
 	ruleflow-group "profitCentre"
 	when
 		$util : ServiceOrderUtil(
@@ -149,6 +149,7 @@ rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and M
 			)
 		$so : ServiceOrder( satisfiedRuleName == null,
 		productCode != null, productCode == "FLET",
+		imoNumber!=null,
 		imoIndBUMapN.get(imoNumber) !=  null,
 		profitCenter == null, dpId != null,
 		dpId not in ("3033", "1020"))
@@ -162,7 +163,7 @@ rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and M
 		update($so);
 end
 
-rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - USA"
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - USA" salience 6
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -186,7 +187,7 @@ rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and M
 		update($so);
 end
 
-rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services-Non USA"
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services-Non USA" salience 7
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -209,8 +210,56 @@ rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and M
 		$so.setManualValidationRequired(true);
 		update($so);
 end
+ 
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Global Government" salience 8
+	ruleflow-group "profitCentre"
+	when 
+		$util : ServiceOrderUtil( 
+                 proftCtMap != null, proftCtMapN : proftCtMap,
+                 ruleConfigMap != null, ruleConfigMap.get("Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Global Government")=="true"
+             )
+        $so : ServiceOrder( satisfiedRuleName == null, 
+		productCode != null, productCode == "SWFT", 
+		customerName != null, customerName in ("AIRBUS SATELLITE EXCHANGE SAS", "AEROSATCOM LIMITED"), 
+		profitCenter == null, dpId != null,
+		dpId not in ("3033", "1020"))
+	
+	then
+	
+		$so.setBusinessUnit("Global Government");
+		$so.setVerticalMarket("Military Government");
+		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
+		$so.setSatisfiedRuleName(drools.getRule().getName());
+		$so.setManualValidationRequired(true);
+		update($so);
+end
 
-rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - USA"
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Customer Segmentation" salience 9
+	ruleflow-group "profitCentre"
+	when 
+		$util : ServiceOrderUtil( 
+				 customerSegBUMap!=null, customerSegBUMapN : customerSegBUMap,
+                 proftCtMap != null, proftCtMapN : proftCtMap,
+                 ruleConfigMap != null, ruleConfigMap.get("Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Customer Segmentation")=="true"
+             )
+        $so : ServiceOrder( satisfiedRuleName == null, 
+		productCode != null, productCode == "SWFT", 
+		corporateName != null,
+		customerSegBUMapN.get(corporateName) != null,
+		profitCenter == null, dpId != null,
+		dpId not in ("3033", "1020"))
+	
+	then
+	
+		$so.setBusinessUnit(((String)customerSegBUMapN.get($so.getCorporateName())).split(",")[1]);
+		$so.setVerticalMarket(((String)customerSegBUMapN.get($so.getCorporateName())).split(",")[0]);
+		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
+		$so.setSatisfiedRuleName(drools.getRule().getName());
+		$so.setManualValidationRequired(true);
+		update($so);
+end
+
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - USA" salience 10
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -234,7 +283,7 @@ rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and A
 		update($so);
 end
 
-rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services-Non USA"
+rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services-Non USA" salience 11
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -258,7 +307,7 @@ rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and A
 		update($so);
 end
 
-rule "Rule 7 - Activation Service Order having industry codes for Aviation and product is Swift Broadband (SB)"
+rule "Rule 7 - Activation Service Order having industry codes for Aviation and product is Swift Broadband (SB)" salience 12
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
@@ -281,7 +330,7 @@ rule "Rule 7 - Activation Service Order having industry codes for Aviation and p
 		update($so);
 end
 
-rule "Rule 8 - Activation Service Order having industry codes for respective business units"
+rule "Rule 8 - Activation Service Order having industry codes for respective business units" salience 13
 	ruleflow-group "profitCentre"
 	when 
 		$util : ServiceOrderUtil(
