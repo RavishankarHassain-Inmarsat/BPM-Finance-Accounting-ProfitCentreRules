@@ -211,53 +211,6 @@ rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and M
 		update($so);
 end
 
-rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Global Government"
-	ruleflow-group "profitCentre"
-	when 
-		$util : ServiceOrderUtil( 
-                 proftCtMap != null, proftCtMapN : proftCtMap,
-                 ruleConfigMap != null, ruleConfigMap.get("Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Global Government")=="true"
-             )
-        $so : ServiceOrder( satisfiedRuleName == null, 
-		productCode != null, productCode == "SWFT", 
-		customerName != null, customerName in ("AIRBUS SATELLITE EXCHANGE SAS", "AEROSATCOM LIMITED"), 
-		profitCenter == null, dpId != null,
-		dpId not in ("3033", "1020"))
-	
-	then
-	
-		$so.setBusinessUnit("Global Government");
-		$so.setVerticalMarket("Military Government");
-		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
-		$so.setSatisfiedRuleName(drools.getRule().getName());
-		$so.setManualValidationRequired(true);
-		update($so);
-end
-
-rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Customer Segmentation"
-	ruleflow-group "profitCentre"
-	when 
-		$util : ServiceOrderUtil( 
-				 customerSegBUMap!=null, customerSegBUMapN : customerSegBUMap,
-                 proftCtMap != null, proftCtMapN : proftCtMap,
-                 ruleConfigMap != null, ruleConfigMap.get("Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - Customer Segmentation")=="true"
-             )
-        $so : ServiceOrder( satisfiedRuleName == null, 
-		productCode != null, productCode == "SWFT", 
-		corporateName != null,
-		customerSegBUMapN.get(corporateName) != null,
-		profitCenter == null, dpId != null,
-		dpId not in ("3033", "1020"))
-	
-	then
-	
-		$so.setBusinessUnit(((String)customerSegBUMapN.get($so.getCorporateName())).split(",")[1]);
-		$so.setVerticalMarket(((String)customerSegBUMapN.get($so.getCorporateName())).split(",")[0]);
-		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
-		$so.setSatisfiedRuleName(drools.getRule().getName());
-		$so.setManualValidationRequired(true);
-		update($so);
-end
 
 rule "Rule 6 - Activation Service Order having industry codes for Govt. BU and Aviation services - USA"
 	ruleflow-group "profitCentre"
