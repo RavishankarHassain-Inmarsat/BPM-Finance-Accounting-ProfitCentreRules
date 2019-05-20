@@ -16,6 +16,8 @@ public class ServiceOrderUtil implements java.io.Serializable {
 	private Map<String, String> customerBuMap;
 	private Map<String, String> compIdBuMap;
 	private Map<String, String> ruleConfigMap;
+	private Map<String, String> imoIndBUMap;
+	private Map<String, String> customerSegBUMap;
 	
 	public Map<String, String> getIndCdBuMap() {
 		return indCdBuMap;
@@ -60,19 +62,24 @@ public class ServiceOrderUtil implements java.io.Serializable {
 	public void setRuleConfigMap(Map<String, String> ruleConfigMap) {
 		this.ruleConfigMap = ruleConfigMap;
 	}
+	public Map<String, String> getImoIndBUMap() {
+		return imoIndBUMap;
+	}
+	public void setImoIndBUMap(Map<String, String> imoIndBUMap) {
+		this.imoIndBUMap = imoIndBUMap;
+	}
+	public Map<String, String> getCustomerSegBUMap() {
+		return customerSegBUMap;
+	}
+	public void setCustomerSegBUMap(Map<String, String> customerSegBUMap) {
+		this.customerSegBUMap = customerSegBUMap;
+	}
 	@Override
 	public String toString() {
 		return "ServiceOrderUtil [indCdBuMap=" + indCdBuMap + ", proftCtMap=" + proftCtMap + ", ratePlanBuMap="
 				+ ratePlanBuMap + ", salesRegCdBuMap=" + salesRegCdBuMap + ", customerBuMap=" + customerBuMap
-				+ ", compIdBuMap=" + compIdBuMap + ", ruleConfigMap=" + ruleConfigMap + "]";
+				+ ", compIdBuMap=" + compIdBuMap + ", ruleConfigMap=" + ruleConfigMap + ", imoIndBUMap=" + imoIndBUMap
+				+ ", customerSegBUMap=" + customerSegBUMap + "]";
 	}
-	
-	
-	
-	
-	
-
-
-   
 
 }
