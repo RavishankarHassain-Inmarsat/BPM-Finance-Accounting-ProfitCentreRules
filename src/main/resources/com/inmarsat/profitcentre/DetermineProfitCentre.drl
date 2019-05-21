@@ -8,7 +8,7 @@ global java.util.Map proftCtMap;
 global java.util.Map ratePlanBuMap;
 global java.util.Map salesRegCodeBuMap;
 global java.util.Map customerBuMap;
-
+global java.util.Map imoIndBUMap;
 
 
 rule "Test"
@@ -131,6 +131,30 @@ rule "Rule 4 - Activation Service order belonging to specific Govt. service prov
 		proftCtMap=$util.getProftCtMap();
 		$so.setBusinessUnit((String)custBuMap.get($so.getDpId()+","+$so.getIndustryCode()));
 		$so.setProfitCenter((String)proftCtMap.get($so.getBusinessUnit()+","+$so.getDpId()));
+		$so.setSatisfiedRuleName(drools.getRule().getName());
+		$so.setManualValidationRequired(true);
+		update($so);
+end
+
+rule "Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - Maritime" 
+	ruleflow-group "profitCentre"
+	when
+		$util : ServiceOrderUtil(
+				 imoIndBUMap!=null, imoIndBUMapN : imoIndBUMap,
+				 proftCtMap != null, proftCtMapN : proftCtMap,
+				 ruleConfigMap != null, ruleConfigMap.get("Rule 5 - Activation Service Order having industry codes for Govt. BU and Maritime services - Maritime")=="true"
+			)
+		$so : ServiceOrder( satisfiedRuleName == null,
+		productCode != null, productCode == "FLET",
+		imoNumber!=null,
+		imoIndBUMapN.get(imoNumber) !=  null,
+		profitCenter == null, dpId != null,
+		dpId not in ("3033", "1020"))
+		
+	then
+		$so.setVerticalMarket(((String)imoIndBUMapN.get($so.getImoNumber())).split(",")[0]);
+		$so.setBusinessUnit(((String)imoIndBUMapN.get($so.getImoNumber())).split(",")[1]);
+		$so.setProfitCenter((String)proftCtMapN.get($so.getBusinessUnit()+","+$so.getDpId()));
 		$so.setSatisfiedRuleName(drools.getRule().getName());
 		$so.setManualValidationRequired(true);
 		update($so);
