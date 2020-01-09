@@ -136,7 +136,7 @@
             },
             "subsets": [
                 {
-                     "addresses": [{ "ip":"${MYSQL_NODE_1}" }, { "ip":"${MYSQL_NODE_2}" } , { "ip":"${MYSQL_NODE_3}" }],
+                     "addresses": [{ "ip":"${MYSQL_NODE_1}" }],
                     "ports": [{ "port": 3306, "protocol" : "TCP" , "name" : "mysql"}]
                 }
             ]
@@ -636,20 +636,6 @@
                 "displayName": "MySQL Node 1",
                 "description": "Size of persistent storage for database volume.",
                 "name": "MYSQL_NODE_1",
-                "value": "",
-                "required": true
-            },
-            {
-                "displayName": "MySQL Node 2",
-                "description": "Size of persistent storage for database volume.",
-                "name": "MYSQL_NODE_2",
-                "value": "",
-                "required": true
-            },
-            {
-                "displayName": "MySQL Node 3",
-                "description": "Size of persistent storage for database volume.",
-                "name": "MYSQL_NODE_3",
                 "value": "",
                 "required": true
             }
