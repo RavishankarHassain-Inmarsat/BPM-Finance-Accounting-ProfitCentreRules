@@ -252,10 +252,6 @@
                                         "value": "${KIE_SERVER_DOMAIN}"
                                     },
                                     {
-                                        "name": "KIE_SERVER_PERSISTENCE_DIALECT",
-                                        "value": "${KIE_SERVER_PERSISTENCE_DIALECT}"
-                                    },
-                                    {
                                         "name": "DB_SERVICE_PREFIX_MAPPING",
                                         "value": "accounting-profit-centre-rules-mysql=DB,accounting-profit-centre-rules-mysql=QUARTZ"
                                     },
@@ -466,13 +462,6 @@
                 "description": "JAAS LoginContext domain that shall be used to authenticate users when using JMS.",
                 "name": "KIE_SERVER_DOMAIN",
                 "value": "other",
-                "required": false
-            },
-            {
-                "displayName": "KIE Server Persistence Dialect",
-                "description": "Hibernate persistence dialect.",
-                "name": "KIE_SERVER_PERSISTENCE_DIALECT",
-                "value": "org.hibernate.dialect.MySQL5Dialect",
                 "required": false
             },
             {
