@@ -264,10 +264,6 @@
                                         "value": "accounting-profit-centre-rules-mysql=DB"
                                     },
                                     {
-                                        "name": "DB_JNDI",
-                                        "value": "${DB_JNDI}"
-                                    },
-                                    {
                                         "name": "DB_USERNAME",
                                         "value": "${DB_USERNAME}"
                                     },
@@ -290,10 +286,6 @@
                                     {
                                         "name": "DB_TX_ISOLATION",
                                         "value": "${DB_TX_ISOLATION}"
-                                    },
-                                    {
-                                        "name": "QUARTZ_JNDI",
-                                        "value": "${DB_JNDI}NotManaged"
                                     },
                                     {
                                         "name": "QUARTZ_USERNAME",
@@ -481,13 +473,6 @@
                 "description": "Hibernate persistence dialect.",
                 "name": "KIE_SERVER_PERSISTENCE_DIALECT",
                 "value": "org.hibernate.dialect.MySQL5Dialect",
-                "required": false
-            },
-            {
-                "displayName": "Database JNDI Name",
-                "description": "Database JNDI name used by application to resolve the datasource, e.g. java:/jboss/datasources/ExampleDS",
-                "name": "DB_JNDI",
-                "value": "java:jboss/datasources/ExampleDS",
                 "required": false
             },
             {
