@@ -275,6 +275,14 @@
                                         "name": "DB_DATABASE",
                                         "value": "${DB_DATABASE}"
                                     },
+									{
+                                        "name": "HOSTNAME_HTTP",
+                                        "value": "${HOSTNAME_HTTP}"
+                                    },
+									{
+                                        "name": "HOSTNAME_HTTPS",
+                                        "value": "${HOSTNAME_HTTPS}"
+                                    },
                                     {
                                         "name": "HTTPS_KEYSTORE_DIR",
                                         "value": "/etc/processserver-secret-volume"
@@ -355,6 +363,27 @@
                 "name": "DOCKER_REG",
                 "value": "",
                 "required": true
+            },
+			{
+                "displayName": "Custom http Route Hostname",
+                "description": "Custom hostname for http service route.  Leave blank for default hostname, e.g.: <application-name>-<project>.<default-domain-suffix>",
+                "name": "HOSTNAME_HTTP",
+                "value": "",
+                "required": false
+            },
+            {
+                "displayName": "Custom https Route Hostname",
+                "description": "Custom hostname for https service route.  Leave blank for default hostname, e.g.: secure-<application-name>-<project>.<default-domain-suffix>",
+                "name": "HOSTNAME_HTTPS",
+                "value": "",
+                "required": false
+            },
+            {
+                "displayName": "KIE Container Deployment",
+                "description": "The KIE Container deployment configuration in format: containerId=groupId:artifactId:version|c2=g2:a2:v2",
+                "name": "KIE_CONTAINER_DEPLOYMENT",
+                "value": "processserver-library=org.openshift.quickstarts:processserver-library:1.3.0.Final",
+                "required": false
             },
             {
                 "displayName": "KIE Server Protocol",
