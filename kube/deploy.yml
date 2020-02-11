@@ -275,11 +275,11 @@
                                         "name": "DB_DATABASE",
                                         "value": "${DB_DATABASE}"
                                     },
-									{
+				    {
                                         "name": "HOSTNAME_HTTP",
                                         "value": "${HOSTNAME_HTTP}"
                                     },
-									{
+				    {
                                         "name": "HOSTNAME_HTTPS",
                                         "value": "${HOSTNAME_HTTPS}"
                                     },
